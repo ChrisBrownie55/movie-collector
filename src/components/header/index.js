@@ -33,7 +33,7 @@ export default class Header extends Component {
   };
 
   goHome = this.linkTo('/');
-  goToMyProfile = this.linkTo('/profile');
+  goToMyProfile = this.linkTo('/movies/');
 
   toggleDarkTheme = () => {
     this.setState(
@@ -52,7 +52,6 @@ export default class Header extends Component {
   }
 
   render(props) {
-    console.log(props.selectedRoute);
     return (
       <div>
         <TopAppBar className="topappbar">
@@ -74,9 +73,9 @@ export default class Header extends Component {
               <List.ItemGraphic>home</List.ItemGraphic>
               Home
             </Drawer.DrawerItem>
-            <Drawer.DrawerItem selected={props.selectedRoute === '/profile'} onClick={this.goToMyProfile}>
-              <List.ItemGraphic>account_circle</List.ItemGraphic>
-              Profile
+            <Drawer.DrawerItem selected={props.selectedRoute === '/movies/'} onClick={this.goToMyProfile}>
+              <List.ItemGraphic>movie</List.ItemGraphic>
+              Movies
             </Drawer.DrawerItem>
           </Drawer.DrawerContent>
         </Drawer>

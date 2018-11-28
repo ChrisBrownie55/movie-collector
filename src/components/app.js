@@ -16,18 +16,24 @@ export default class App extends Component {
    */
   handleRoute = e => {
     this.setState({
+      ...this.state,
       currentUrl: e.url
     });
   };
 
+  authenticate = creds => {
+    
+  }
+
   render() {
     return (
       <div id="app">
-        <Header selectedRoute={this.state.currentUrl}/>
+        <Header selectedRoute={this.state.currentUrl} />
         <Router onChange={this.handleRoute}>
           <Home path="/" />
           <Movies path="/movies/:userId" />
           <Auth path="/auth" />
+          <Auth path="/movies/" />
           <NotFound default />
         </Router>
       </div>
