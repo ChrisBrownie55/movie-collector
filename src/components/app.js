@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { Router } from 'preact-router';
+import { Router, route } from 'preact-router';
 
 import Header from './header';
 
@@ -17,6 +17,21 @@ export default class App extends Component {
   }
 
   handleRoute = e => {
+    switch (e.url) {
+      case '/':
+        if (!this.state.user) {
+          route('/login', true);
+        }
+        break;
+      case '/login':
+        if (this.state.user) {
+          route('/', true);
+        }
+        break;
+      default:
+        break;
+    }
+
     this.setState({
       currentUrl: e.url
     });
@@ -44,12 +59,10 @@ export default class App extends Component {
   render() {
     return (
       <div id="app">
-        <Header onLogout={this.logout} isLoggedIn={!!this.user} selectedRoute={this.state.currentUrl} />
+        <Header onLogout={this.logout} isLoggedIn={!!this.state.user} selectedRoute={this.state.currentUrl} />
         <Router onChange={this.handleRoute}>
-          <Auth onLogin={this.login} path="/" />
-          <Auth onLogin={this.login} path="/auth" />
-          <Auth onLogin={this.login} path="/movies/" />
-          <Movies path="/movies/:uid" />
+          <Auth onLogin={this.login} path="/login" />
+          <Movies path="/" />
           <NotFound default />
         </Router>
       </div>

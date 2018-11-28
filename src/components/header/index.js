@@ -17,9 +17,7 @@ import 'preact-material-components/TopAppBar/style.css';
 import style from './style';
 
 export default class Header extends Component {
-  drawerRef = drawer => {
-    this.drawer = drawer;
-  };
+  drawerRef = drawer => this.drawer = drawer;
 
   closeDrawer = () => this.drawer.MDComponent.open = false;
   openDrawer = () => this.drawer.MDComponent.open = true;
@@ -30,7 +28,7 @@ export default class Header extends Component {
   };
 
   goHome = this.linkTo('/');
-  goToMyProfile = this.linkTo('/movies/');
+  goToLogin = this.linkTo('/login');
 
   render(props) {
     return (
@@ -49,13 +47,13 @@ export default class Header extends Component {
         </TopAppBar>
         <Drawer modal ref={this.drawerRef}>
           <Drawer.DrawerContent>
-            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
-              <List.ItemGraphic>home</List.ItemGraphic>
-              Home
-            </Drawer.DrawerItem>
-            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/movies/'} onClick={this.goToMyProfile}>
+            <Drawer.DrawerItem disabled className={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
               <List.ItemGraphic>movie</List.ItemGraphic>
               Movies
+            </Drawer.DrawerItem>
+            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/login'} onClick={this.goToLogin}>
+              <List.ItemGraphic>fingerprint</List.ItemGraphic>
+              Login
             </Drawer.DrawerItem>
           </Drawer.DrawerContent>
         </Drawer>
