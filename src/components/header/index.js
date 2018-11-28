@@ -1,17 +1,19 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
+import CSSTransitionGroup from 'preact-css-transition-group';
 
 // Material Components
 import TopAppBar from 'preact-material-components/TopAppBar';
 import Drawer from 'preact-material-components/Drawer';
 import List from 'preact-material-components/List';
-import Switch from 'preact-material-components/Switch';
+import Button from 'preact-material-components/Button';
 
 // Material CSS
-import 'preact-material-components/Switch/style.css';
 import 'preact-material-components/Drawer/style.css';
 import 'preact-material-components/List/style.css';
 import 'preact-material-components/TopAppBar/style.css';
+import 'preact-material-components/Button/style.css';
+import 'preact-material-components/Theme/style.css';
 
 // My CSS
 import style from './style';
@@ -42,6 +44,7 @@ export default class Header extends Component {
               <TopAppBar.Title>Movie Collector</TopAppBar.Title>
             </TopAppBar.Section>
             <TopAppBar.Section align-end shrink-to-fit>
+              <Button ripple className={style.logoutButton} onClick={this.props.onLogout}>Logout</Button>
             </TopAppBar.Section>
           </TopAppBar.Row>
         </TopAppBar>

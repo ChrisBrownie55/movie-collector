@@ -37,7 +37,7 @@ export default class App extends Component {
     });
   };
 
-  async login() {
+  login = async () => {
     try {
       const { user } = await auth.signInWithPopup(provider);
       this.setState({ user });
@@ -45,12 +45,12 @@ export default class App extends Component {
       // TODO: Notify the user of error
       console.error('An error has occurred while authenticating:', error);
     }
-  }
+  };
 
-  async logout() {
+  logout = async () => {
     await auth.signOut();
     this.setState({ user: null });
-  }
+  };
 
   componentDidMount() {
     auth.onAuthStateChanged(user => user && this.setState({ user }));
