@@ -21,7 +21,10 @@
       "react/prefer-stateless-function": "off",
       "indent": [
         "error",
-        2
+        2,
+        {
+          "SwitchCase": 1
+        }
       ],
       "brace-style": [
         "error",
