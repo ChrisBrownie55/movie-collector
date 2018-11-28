@@ -3,26 +3,42 @@ import { Router } from 'preact-router';
 
 import Header from './header';
 
-import Home from 'async!../routes/home';
 import Movies from 'async!../routes/movies';
 import Auth from 'async!../routes/auth';
 
 import NotFound from 'async!../routes/404';
 
+import { auth, provider } from '../firebase.js';
+
 export default class App extends Component {
-  /** Gets fired when the route changes.
-   *  @param {Object} event    "change" event from [preact-router](http://git.io/preact-router)
-   *  @param {string} event.url  The newly routed URL
-   */
+  state = {
+    currentUrl: null,
+    user: null
+  }
+
   handleRoute = e => {
     this.setState({
-      ...this.state,
       currentUrl: e.url
     });
   };
 
-  authenticate = creds => {
-    
+  login = async () => {
+    try {
+      const { user } = await auth.signInWithPopup(provider);
+      this.setState({ user });
+    } catch (error) {
+      // TODO: Notify the user of error
+      console.error('An error has occurred while authenticating:', error);
+    }
+  }
+
+  logout = async () => {
+    await auth.signOut();
+    this.setState({ user: null });
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => user && this.setState({ user }));
   }
 
   render() {
@@ -30,10 +46,10 @@ export default class App extends Component {
       <div id="app">
         <Header selectedRoute={this.state.currentUrl} />
         <Router onChange={this.handleRoute}>
-          <Home path="/" />
+          <Auth onLogin={this.login} path="/" />
+          <Auth onLogin={this.login} path="/auth" />
+          <Auth onLogin={this.login} path="/movies/" />
           <Movies path="/movies/:userId" />
-          <Auth path="/auth" />
-          <Auth path="/movies/" />
           <NotFound default />
         </Router>
       </div>
