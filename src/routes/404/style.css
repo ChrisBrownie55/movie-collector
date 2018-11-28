@@ -1,13 +1,12 @@
-.home {
-  padding: 20px;
-  min-height: 100%;
-  width: 100%;
-}
+.error {
+  display: grid;
+  place-items: center;
 
-.cardHeader {
-  padding: 16px;
-}
+  @supported not (display: grid) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.cardBody {
-  padding: 16px;
+  height: 100%;
 }

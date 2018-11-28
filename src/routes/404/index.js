@@ -6,9 +6,9 @@ import style from './style';
 export default class NotFound extends Component {
   render() {
     return (
-      <div class={`${style.home} page`}>
+      <div class={`${style.error} page`}>
         <h1>404</h1>
-        <p>This page does not exists</p>
+        <p>The page you tried to access does not exist.</p>
       </div>
     );
   }
