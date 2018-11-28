@@ -7,8 +7,10 @@ export default class NotFound extends Component {
   render() {
     return (
       <div class={`${style.error} page`}>
-        <h1>404</h1>
-        <p>The page you tried to access does not exist.</p>
+        <div>
+          <h1>404</h1>
+          <p>The page you tried to access does not exist.</p>
+        </div>
       </div>
     );
   }

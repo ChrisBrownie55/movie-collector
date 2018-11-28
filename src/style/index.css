@@ -53,5 +53,6 @@ html, body {
 }
 
 #app .page {
-  padding-top: 56px;
+  padding-top: 64px;
+  min-height: calc(100% - 64px);
 }
