@@ -49,7 +49,7 @@ export default class App extends Component {
           <Auth onLogin={this.login} path="/" />
           <Auth onLogin={this.login} path="/auth" />
           <Auth onLogin={this.login} path="/movies/" />
-          <Movies path="/movies/:userId" />
+          <Movies path="/movies/:uid" />
           <NotFound default />
         </Router>
       </div>
