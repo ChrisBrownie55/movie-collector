@@ -3,10 +3,10 @@ import { Router } from 'preact-router';
 
 import Header from './header';
 
-import Movies from 'async!../routes/movies';
-import Auth from 'async!../routes/auth';
+import Movies from '../routes/movies';
+import Auth from '../routes/auth';
 
-import NotFound from 'async!../routes/404';
+import NotFound from '../routes/404';
 
 import { auth, provider } from '../firebase.js';
 
