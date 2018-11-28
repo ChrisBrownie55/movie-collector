@@ -57,23 +57,25 @@ export default class Header extends Component {
         <TopAppBar className="topappbar">
           <TopAppBar.Row>
             <TopAppBar.Section align-start>
-              <TopAppBar.Icon menu onClick={this.openDrawer}>
+              <TopAppBar.Icon className={style.pointer} menu onClick={this.openDrawer}>
                 menu
               </TopAppBar.Icon>
               <TopAppBar.Title>Movie Collector</TopAppBar.Title>
             </TopAppBar.Section>
-            <TopAppBar.Section align-end shrink-to-fit onClick={this.openSettings}>
-              Settings &nbsp; <TopAppBar.Icon>settings</TopAppBar.Icon>
+            <TopAppBar.Section align-end shrink-to-fit>
+              <span className={`${style.pointer} ${style.settingsButton}`} onClick={this.openSettings}>
+                Settings &nbsp; <TopAppBar.Icon>settings</TopAppBar.Icon>
+              </span>
             </TopAppBar.Section>
           </TopAppBar.Row>
         </TopAppBar>
         <Drawer modal ref={this.drawerRef}>
           <Drawer.DrawerContent>
-            <Drawer.DrawerItem className={style.drawerItem} selected={props.selectedRoute === '/'} onClick={this.goHome}>
+            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
               <List.ItemGraphic>home</List.ItemGraphic>
               Home
             </Drawer.DrawerItem>
-            <Drawer.DrawerItem className={style.drawerItem} selected={props.selectedRoute === '/movies/'} onClick={this.goToMyProfile}>
+            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/movies/'} onClick={this.goToMyProfile}>
               <List.ItemGraphic>movie</List.ItemGraphic>
               Movies
             </Drawer.DrawerItem>
