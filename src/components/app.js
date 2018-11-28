@@ -8,7 +8,7 @@ import Auth from '../routes/auth';
 
 import NotFound from '../routes/404';
 
-import { auth, provider } from '../firebase.js';
+import { auth, provider } from '../firebase';
 
 export default class App extends Component {
   state = {

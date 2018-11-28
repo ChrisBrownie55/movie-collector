@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build",
-    "serve": "preact build && preact serve",
-    "dev": "preact watch",
+    "start": "if-env NODE_ENV=production && yarn run -s serve || yarn run -s dev",
+    "build": "preact build --template ./src/template.html",
+    "serve": "preact build --template ./src/template.html && preact serve",
+    "dev": "preact watch --template ./src/template.html",
     "lint": "eslint src"
   },
   "eslintConfig": {
@@ -17,8 +17,14 @@
       "react/sort-comp": "off",
       "lines-around-comment": "off",
       "react/prefer-stateless-function": "off",
-      "indent": ["error", 2],
-      "brace-style": ["error", "1tbs"]
+      "indent": [
+        "error",
+        2
+      ],
+      "brace-style": [
+        "error",
+        "1tbs"
+      ]
     }
   },
   "eslintIgnore": [
@@ -31,9 +37,10 @@
     "preact-cli": "^2.0.0"
   },
   "dependencies": {
+    "firebase": "^5.5.9",
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
-    "preact-router": "^2.5.5",
-    "preact-material-components": "^1.4.3"
+    "preact-material-components": "^1.4.3",
+    "preact-router": "^2.5.5"
   }
 }

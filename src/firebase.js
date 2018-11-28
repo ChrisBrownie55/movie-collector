@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 const config = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: 'AIzaSyCm2tf7uXDHtb9G78xVJA5841wNR0FT0aA',
   authDomain: 'movie-collector-dc8ec.firebaseapp.com',
   databaseURL: 'https://movie-collector-dc8ec.firebaseio.com',
   projectId: 'movie-collector-dc8ec',
