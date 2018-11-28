@@ -1,6 +1,6 @@
 {
   "name": "movie-collector",
-  "short_name": "movie-collector",
+  "short_name": "movies",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
