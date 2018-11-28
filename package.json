@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "if-env NODE_ENV=production && yarn run -s serve || yarn run -s dev",
+    "start": "cross-per-env",
+    "start:production": "yarn run -s serve",
+    "start:development": "yarn run -s dev",
     "build": "preact build --template ./src/template.html",
     "serve": "preact build --template ./src/template.html && preact serve",
     "dev": "preact watch --template ./src/template.html",
@@ -31,9 +33,9 @@
     "build/*"
   ],
   "devDependencies": {
+    "cross-per-env": "^1.0.5",
     "eslint": "^4.5.0",
     "eslint-config-synacor": "^1.1.0",
-    "if-env": "^1.0.0",
     "preact-cli": "^2.0.0"
   },
   "dependencies": {

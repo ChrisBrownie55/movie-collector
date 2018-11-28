@@ -1,16 +1,22 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
+
+// Material Components
 import TopAppBar from 'preact-material-components/TopAppBar';
 import Drawer from 'preact-material-components/Drawer';
 import List from 'preact-material-components/List';
 import Dialog from 'preact-material-components/Dialog';
 import Switch from 'preact-material-components/Switch';
+
+// Material CSS
 import 'preact-material-components/Switch/style.css';
 import 'preact-material-components/Dialog/style.css';
 import 'preact-material-components/Drawer/style.css';
 import 'preact-material-components/List/style.css';
 import 'preact-material-components/TopAppBar/style.css';
-// import style from './style';
+
+// My CSS
+import style from './style';
 
 export default class Header extends Component {
   closeDrawer() {
@@ -36,18 +42,12 @@ export default class Header extends Component {
   goToMyProfile = this.linkTo('/movies/');
 
   toggleDarkTheme = () => {
-    this.setState(
-      {
-        darkThemeEnabled: !this.state.darkThemeEnabled
-      },
-      () => {
-        if (this.state.darkThemeEnabled) {
-          document.body.classList.add('mdc-theme--dark');
-        }
-        else {
-          document.body.classList.remove('mdc-theme--dark');
-        }
-      }
+    this.setState({
+      darkThemeEnabled: !this.state.darkThemeEnabled
+    }, () =>
+      this.state.darkThemeEnabled
+        ? document.body.classList.add('mdc-theme--dark')
+        : document.body.classList.remove('mdc-theme--dark')
     );
   }
 
@@ -63,17 +63,17 @@ export default class Header extends Component {
               <TopAppBar.Title>Preact app</TopAppBar.Title>
             </TopAppBar.Section>
             <TopAppBar.Section align-end shrink-to-fit onClick={this.openSettings}>
-              <TopAppBar.Icon>settings</TopAppBar.Icon>
+              Settings &nbsp; <TopAppBar.Icon>settings</TopAppBar.Icon>
             </TopAppBar.Section>
           </TopAppBar.Row>
         </TopAppBar>
         <Drawer modal ref={this.drawerRef}>
           <Drawer.DrawerContent>
-            <Drawer.DrawerItem selected={props.selectedRoute === '/'} onClick={this.goHome}>
+            <Drawer.DrawerItem className={style.drawerItem} selected={props.selectedRoute === '/'} onClick={this.goHome}>
               <List.ItemGraphic>home</List.ItemGraphic>
               Home
             </Drawer.DrawerItem>
-            <Drawer.DrawerItem selected={props.selectedRoute === '/movies/'} onClick={this.goToMyProfile}>
+            <Drawer.DrawerItem className={style.drawerItem} selected={props.selectedRoute === '/movies/'} onClick={this.goToMyProfile}>
               <List.ItemGraphic>movie</List.ItemGraphic>
               Movies
             </Drawer.DrawerItem>

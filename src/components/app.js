@@ -22,7 +22,7 @@ export default class App extends Component {
     });
   };
 
-  login = async () => {
+  async login() {
     try {
       const { user } = await auth.signInWithPopup(provider);
       this.setState({ user });
@@ -32,7 +32,7 @@ export default class App extends Component {
     }
   }
 
-  logout = async () => {
+  async logout() {
     await auth.signOut();
     this.setState({ user: null });
   }
@@ -44,7 +44,7 @@ export default class App extends Component {
   render() {
     return (
       <div id="app">
-        <Header selectedRoute={this.state.currentUrl} />
+        <Header onLogout={this.logout} isLoggedIn={!!this.user} selectedRoute={this.state.currentUrl} />
         <Router onChange={this.handleRoute}>
           <Auth onLogin={this.login} path="/" />
           <Auth onLogin={this.login} path="/auth" />
