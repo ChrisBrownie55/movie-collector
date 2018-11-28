@@ -2,11 +2,12 @@ import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
 import Header from './header';
-import Home from '../routes/home';
-import Profile from '../routes/profile';
-import NotFound from '../routes/404';
-// import Home from 'async!../routes/home';
-// import Profile from 'async!../routes/profile';
+
+import Home from 'async!../routes/home';
+import Movies from 'async!../routes/movies';
+import Auth from 'async!../routes/auth';
+
+import NotFound from 'async!../routes/404';
 
 export default class App extends Component {
   /** Gets fired when the route changes.
@@ -25,8 +26,8 @@ export default class App extends Component {
         <Header selectedRoute={this.state.currentUrl}/>
         <Router onChange={this.handleRoute}>
           <Home path="/" />
-          <Profile path="/profile/" user="me" />
-          <Profile path="/profile/:user" />
+          <Movies path="/movies/:userId" />
+          <Auth path="/auth" />
           <NotFound default />
         </Router>
       </div>
