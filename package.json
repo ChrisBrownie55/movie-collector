@@ -17,7 +17,8 @@
       "react/sort-comp": "off",
       "lines-around-comment": "off",
       "react/prefer-stateless-function": "off",
-      "indent": ["error", 2]
+      "indent": ["error", 2],
+      "brace-style": ["error", "1tbs"]
     }
   },
   "eslintIgnore": [
