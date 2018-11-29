@@ -4,7 +4,7 @@ import { Router, route } from 'preact-router';
 import Header from './header';
 
 import Movies from '../routes/movies';
-import Auth from '../routes/auth';
+import Login from '../routes/login';
 
 import NotFound from '../routes/404';
 
@@ -27,8 +27,8 @@ export default class App extends Component {
       case '/login':
         if (this.state.user) {
           route('/', true);
+          this.setState({ currentUrl: '/' });
         }
-        this.setState({ currentUrl: '/' });
         return;
       default:
         break;
@@ -63,7 +63,7 @@ export default class App extends Component {
       <div id="app">
         <Header onLogout={this.logout} isLoggedIn={!!this.state.user} selectedRoute={this.state.currentUrl} />
         <Router onChange={this.handleRoute}>
-          <Auth onLogin={this.login} path="/login" />
+          <Login onLogin={this.login} path="/login" />
           <Movies path="/" />
           <NotFound default />
         </Router>

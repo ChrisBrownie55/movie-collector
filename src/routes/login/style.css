@@ -1,0 +1,38 @@
+.googleSignIn {
+  direction: ltr;
+
+  width: 100%;
+  height: auto;
+  max-width: 220px;
+  min-height: 40px;
+  padding: 8px 16px;
+
+  background-color: hsl(0, 0%, 100%) !important       ;
+
+  font-weight: 500;
+  line-height: normal;
+  text-align: left;
+}
+
+.googleSignIn > img {
+  display: inline-block;
+  vertical-align: middle;
+
+  width: 18px;
+  height: 18px;
+
+  border: none;
+}
+
+.googleSignIn > span {
+  display: table-cell;
+  vertical-align: middle;
+
+  padding-left: 16px;
+
+  color: hsl(0, 0%, 40%);
+
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+}
