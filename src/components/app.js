@@ -54,6 +54,7 @@ export default class App extends Component {
   logout = async () => {
     await auth.signOut();
     this.setState({ user: null });
+    route('/login');
   };
 
   componentDidMount() {
