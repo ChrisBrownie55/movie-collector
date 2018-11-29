@@ -21,13 +21,15 @@ export default class App extends Component {
       case '/':
         if (!this.state.user) {
           route('/login', true);
+          this.setState({ currentUrl: '/login' });
         }
-        break;
+        return;
       case '/login':
         if (this.state.user) {
           route('/', true);
         }
-        break;
+        this.setState({ currentUrl: '/' });
+        return;
       default:
         break;
     }
