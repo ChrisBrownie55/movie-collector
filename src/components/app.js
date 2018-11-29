@@ -55,7 +55,16 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    auth.onAuthStateChanged(user => user && this.setState({ user }));
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user }, () => {
+          if (this.currentUrl !== '/') {
+            route('/', true);
+          }
+        });
+
+      }
+    });
   }
 
   render() {
