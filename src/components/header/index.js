@@ -56,7 +56,7 @@ export default class Header extends Component {
         </TopAppBar>
         <Drawer modal ref={this.drawerRef}>
           <Drawer.DrawerContent>
-            <Drawer.DrawerItem disabled className={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
+            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
               <List.ItemGraphic>movie</List.ItemGraphic>
               Movies
             </Drawer.DrawerItem>

@@ -22,14 +22,16 @@ export default class App extends Component {
         if (!this.state.user) {
           route('/login', true);
           this.setState({ currentUrl: '/login' });
+          return;
         }
-        return;
+        break;
       case '/login':
         if (this.state.user) {
           route('/', true);
           this.setState({ currentUrl: '/' });
+          return;
         }
-        return;
+        break;
       default:
         break;
     }
@@ -62,7 +64,6 @@ export default class App extends Component {
             route('/', true);
           }
         });
-
       }
     });
   }
