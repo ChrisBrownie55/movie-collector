@@ -27,6 +27,10 @@
   margin-right: 5px;
 }
 
+.menuIcon {
+  font-size: 2rem;
+}
+
 
 .fade-enter, .fade-leave-active { opacity: 0; }
 .fade-leave, .fade-enter-active { opacity: 1; }

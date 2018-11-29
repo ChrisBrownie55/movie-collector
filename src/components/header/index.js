@@ -38,7 +38,7 @@ export default class Header extends Component {
         <TopAppBar className="topappbar">
           <TopAppBar.Row>
             <TopAppBar.Section align-start>
-              <TopAppBar.Icon className={style.pointer} menu onClick={this.openDrawer}>
+              <TopAppBar.Icon className={`${style.pointer} ${style.menuIcon}`} menu navigation onClick={this.openDrawer}>
                 menu
               </TopAppBar.Icon>
               <TopAppBar.Title className={style.title}>
