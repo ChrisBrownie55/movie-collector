@@ -7,14 +7,12 @@ import TopAppBar from 'preact-material-components/TopAppBar';
 import Drawer from 'preact-material-components/Drawer';
 import List from 'preact-material-components/List';
 import Button from 'preact-material-components/Button';
-import Typography from 'preact-material-components/Typography';
 
 // Material CSS
 import 'preact-material-components/Drawer/style.css';
 import 'preact-material-components/List/style.css';
 import 'preact-material-components/TopAppBar/style.css';
 import 'preact-material-components/Button/style.css';
-import 'preact-material-components/Typography/style.css';
 import 'preact-material-components/Theme/style.css';
 
 // My CSS
@@ -50,7 +48,7 @@ export default class Header extends Component {
                 {
                   this.props.isLoggedIn
                     ? <Button key={0} ripple className={style.logoutButton} onClick={this.props.onLogout}>Logout</Button>
-                    : <Typography></Typography>
+                    : null
                 }
               </CSSTransitionGroup>
             </TopAppBar.Section>

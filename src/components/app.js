@@ -72,7 +72,7 @@ export default class App extends Component {
   render() {
     return (
       <div id="app">
-        <Header onLogout={this.logout} isLoggedIn={!!this.state.user} selectedRoute={this.state.currentUrl} />
+        <Header onLogout={this.logout} user={this.state.user} selectedRoute={this.state.currentUrl} />
         <Router onChange={this.handleRoute}>
           <Login onLogin={this.login} path="/login" />
           <Movies path="/" />
