@@ -41,7 +41,10 @@ export default class Header extends Component {
               <TopAppBar.Icon className={style.pointer} menu onClick={this.openDrawer}>
                 menu
               </TopAppBar.Icon>
-              <TopAppBar.Title>Movie Collector</TopAppBar.Title>
+              <TopAppBar.Title className={style.title}>
+                <img className={style.filmIcon} src="../../assets/film-solid.svg" alt="film icon" />
+                Movie Collector
+              </TopAppBar.Title>
             </TopAppBar.Section>
             <TopAppBar.Section align-end shrink-to-fit>
               <CSSTransitionGroup transitionName="fade">

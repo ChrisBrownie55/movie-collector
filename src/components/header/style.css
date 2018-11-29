@@ -16,6 +16,18 @@
   background-color: white;
 }
 
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.filmIcon {
+  width: 40.5px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+
 .fade-enter, .fade-leave-active { opacity: 0; }
 .fade-leave, .fade-enter-active { opacity: 1; }
 .fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
