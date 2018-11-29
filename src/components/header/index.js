@@ -46,7 +46,7 @@ export default class Header extends Component {
             <TopAppBar.Section align-end shrink-to-fit>
               <CSSTransitionGroup transitionName="fade" >
                 {
-                  this.props.isLoggedIn
+                  this.props.user
                     ? <Button key={0} ripple className={style.logoutButton} onClick={this.props.onLogout}>Logout</Button>
                     : null
                 }
