@@ -7,7 +7,7 @@ import 'preact-material-components/Typography/style.css';
 
 import style from './style.css';
 
-export default class Auth extends Component {
+export default class Login extends Component {
   render() {
     return (
       <div className="page">
