@@ -44,7 +44,7 @@ export default class Header extends Component {
               <TopAppBar.Title>Movie Collector</TopAppBar.Title>
             </TopAppBar.Section>
             <TopAppBar.Section align-end shrink-to-fit>
-              <CSSTransitionGroup transitionName="fade" >
+              <CSSTransitionGroup transitionName="fade">
                 {
                   this.props.user
                     ? <Button key={0} ripple className={style.logoutButton} onClick={this.props.onLogout}>Logout</Button>

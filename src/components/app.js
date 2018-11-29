@@ -3,8 +3,9 @@ import { Router, route } from 'preact-router';
 
 import Header from './header';
 
-import Movies from '../routes/movies';
 import Login from '../routes/login';
+import Movies from '../routes/movies';
+import Search from '../routes/search';
 
 import NotFound from '../routes/404';
 
@@ -19,6 +20,7 @@ export default class App extends Component {
   handleRoute = e => {
     switch (e.url) {
       case '/':
+      case '/search':
         if (!this.state.user) {
           route('/login', true);
           this.setState({ currentUrl: '/login' });
@@ -62,7 +64,7 @@ export default class App extends Component {
       if (user) {
         this.setState({ user }, () => {
           if (this.currentUrl !== '/') {
-            route('/', true);
+            route('/');
           }
         });
       }
@@ -76,6 +78,7 @@ export default class App extends Component {
         <Router onChange={this.handleRoute}>
           <Login onLogin={this.login} path="/login" />
           <Movies path="/" />
+          <Search path="/search" />
           <NotFound default />
         </Router>
       </div>
