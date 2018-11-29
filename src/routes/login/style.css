@@ -12,6 +12,8 @@
   font-weight: 500;
   line-height: normal;
   text-align: left;
+
+  border-radius: 4px;
 }
 
 .googleSignIn > img {
