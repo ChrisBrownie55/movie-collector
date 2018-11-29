@@ -11,13 +11,14 @@ export default class Login extends Component {
   render() {
     return (
       <div className="page">
-        <main>
-          <Typography headline2>Are you ready to </Typography>
+        <div className={style.Login}>
+          <Typography headline5>Welcome to Movie Collector</Typography>
+          <Typography body1>If you haven't registered yet, don't worry, logging in with Google will create you an account.</Typography>
           <Button raised className={style.googleSignIn}>
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" />
             <span>Sign in with Google</span>
           </Button>
-        </main>
+        </div>
       </div>
     );
   }

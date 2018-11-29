@@ -37,10 +37,30 @@
   text-transform: none;
 }
 
-.content {
+.Login {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  margin: auto;
+  width: fit-content;
+  padding: 1rem 0.5rem;
+  margin-top: calc(8rem + 10vh) !important;
+
+  background-color: white;
+}
+
+.Login > :global(.mdc-typography--headline5) {
+  width: 90vw;
+  max-width: 19rem;
+  margin-bottom: 1rem;
+
+  text-align: center;
+}
+
+.Login :global(.mdc-typography--body1) {
+  width: 90vw;
+  max-width: 25rem;
+  margin-bottom: 2rem;
+
+  text-align: center;
 }
