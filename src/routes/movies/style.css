@@ -16,6 +16,15 @@
     --avatar-size: calc(55px * 1.5);
     --search-size: calc(24px * 1.5);
   }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+}
+
+.header {
+  height: var(--avatar-size);
+  margin-bottom: 1.5rem;
 }
 
 .avatar {
@@ -49,6 +58,12 @@
 
   border-radius: 50%;
   cursor: pointer;
+}
+
+.displayName {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 7%;
 }
 
 .moviesList {
