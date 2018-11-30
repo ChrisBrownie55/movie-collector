@@ -1,0 +1,22 @@
+.movie {
+  --size: 7rem;
+
+  display: flex;
+  flex-direction: column;
+
+  width: var(--size);
+}
+
+.movie > img {
+  width: var(--size);
+  height: var(--size);
+  margin-bottom: 0.5rem;
+
+  border-radius: 22px;
+
+  object-fit: cover;
+}
+
+.movie > figcaption {
+  text-align: center;
+}
