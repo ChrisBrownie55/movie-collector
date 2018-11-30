@@ -30,6 +30,7 @@ export default class Header extends Component {
   };
 
   goHome = this.linkTo('/');
+  goToSearch = this.linkTo('/search');
   goToLogin = this.linkTo('/login');
 
   render(props) {
@@ -62,6 +63,10 @@ export default class Header extends Component {
             <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
               <List.ItemGraphic>movie</List.ItemGraphic>
               Movies
+            </Drawer.DrawerItem>
+            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/search'} onClick={this.goToSearch}>
+              <List.ItemGraphic>search</List.ItemGraphic>
+              Search
             </Drawer.DrawerItem>
             <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/login'} onClick={this.goToLogin}>
               <List.ItemGraphic>fingerprint</List.ItemGraphic>
