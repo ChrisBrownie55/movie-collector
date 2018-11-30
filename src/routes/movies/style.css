@@ -8,7 +8,7 @@
   padding-top: calc(64px + 1rem) !important;
 
   --avatar-size: 55px;
-  --search-size: 24px;
+  --search-size: 27px;
 }
 
 @media (min-width: 800px) {

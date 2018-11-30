@@ -19,7 +19,7 @@ export default class Movies extends Component {
           <img class={style.avatar} src={this.props.user.photoURL} alt="avatar" />
           <Icon class={style.search} onClick={this.goToSearch}>search</Icon>
         </header>
-        <Typography body1 class={style.displayName}>{this.props.user.displayName}'s Movies</Typography>
+        <Typography body1 class={style.displayName}>{this.props.user.displayName.split(' ')[0]}'s Movies</Typography>
         <section class={style.moviesList}>
           <Movie posterSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcvWv3fwAHmQMx4nFrOwAAAABJRU5ErkJggg==" posterAlt="placeholder" movieName="Movie Title" />
           <Movie posterSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcvWv3fwAHmQMx4nFrOwAAAABJRU5ErkJggg==" posterAlt="placeholder" movieName="Movie Title" />
