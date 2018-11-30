@@ -63,7 +63,9 @@
 .displayName {
   font-size: 22px;
   font-weight: bold;
-  letter-spacing: 7%;
+  letter-spacing: 0.5px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
 }
 
 .moviesList {
