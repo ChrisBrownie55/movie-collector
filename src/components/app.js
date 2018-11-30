@@ -13,7 +13,7 @@ import { auth, provider } from '../firebase';
 
 export default class App extends Component {
   state = {
-    currentUrl: null,
+    currentUrl: '',
     user: null
   }
 
@@ -21,6 +21,7 @@ export default class App extends Component {
     switch (e.url) {
       case '/':
       case '/search':
+        // TODO: notify user they need to login to do that
         if (!this.state.user) {
           route('/login', true);
           this.setState({ currentUrl: '/login' });
@@ -28,6 +29,7 @@ export default class App extends Component {
         }
         break;
       case '/login':
+        // TODO: notify user they are already logged in
         if (this.state.user) {
           route('/', true);
           this.setState({ currentUrl: '/' });

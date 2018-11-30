@@ -72,4 +72,22 @@ export default class Header extends Component {
       </div>
     );
   }
+
+  static propTypes = {
+    user: {
+      checker: value => value instanceof Object || value === null,
+      message: 'user must be an object or null',
+      isRequired: true
+    },
+    onLogout: {
+      checker: value => value instanceof Function,
+      message: 'onLogout must be a function',
+      isRequired: true
+    },
+    selectedRoute: {
+      checker: value => typeof value === 'string',
+      message: 'selectedRoute must be a string',
+      isRequired: true
+    }
+  }
 }
