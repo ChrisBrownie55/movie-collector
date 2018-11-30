@@ -14,7 +14,8 @@ import { auth, provider } from '../firebase';
 export default class App extends Component {
   state = {
     currentUrl: '',
-    user: null
+    user: null,
+    movies: []
   }
 
   handleRoute = e => {
@@ -79,8 +80,8 @@ export default class App extends Component {
         <Header onLogout={this.logout} user={this.state.user} selectedRoute={this.state.currentUrl} />
         <Router onChange={this.handleRoute}>
           <Login onLogin={this.login} path="/login" />
-          <Movies path="/" />
-          <Search path="/search" />
+          <Movies path="/" user={this.state.user} movies={this.state.movies} />
+          <Search path="/search" user={this.state.user} />
           <NotFound default />
         </Router>
       </div>

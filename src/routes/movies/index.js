@@ -6,11 +6,27 @@ export default class Movies extends Component {
   render() {
     return (
       <div class={`${style.movies} page`}>
+        <header class={style.header}>
+          <img class={style.avatar} src={this.props.user.photoURL} alt="avatar" />
+        </header>
         <section class={style.moviesList}>
           <Movie posterSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcvWv3fwAHmQMx4nFrOwAAAABJRU5ErkJggg==" posterAlt="placeholder" movieName="Movie Title" />
           <Movie posterSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcvWv3fwAHmQMx4nFrOwAAAABJRU5ErkJggg==" posterAlt="placeholder" movieName="Movie Title" />
         </section>
       </div>
     );
+  }
+
+  static propTypes = {
+    user: {
+      checker: value => value instanceof Object,
+      message: 'user must be an object',
+      isRequired: true
+    },
+    movies: {
+      checker: value => Array.isArray(value) && value.every(v => v instanceof Object),
+      message: 'movies must be an array of objects',
+      isRequired: true
+    }
   }
 }
