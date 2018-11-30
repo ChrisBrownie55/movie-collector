@@ -1,13 +1,20 @@
 import { h, Component } from 'preact';
+import { route } from 'preact-router';
+
+import Icon from 'preact-material-components/Icon';
+
 import Movie from '../../components/movie';
 import style from './style.css';
 
 export default class Movies extends Component {
+  goToSearch = () => route('/search');
+
   render() {
     return (
       <div class={`${style.movies} page`}>
         <header class={style.header}>
           <img class={style.avatar} src={this.props.user.photoURL} alt="avatar" />
+          <Icon className={style.search} onClick={this.goToSearch}>search</Icon>
         </header>
         <section class={style.moviesList}>
           <Movie posterSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcvWv3fwAHmQMx4nFrOwAAAABJRU5ErkJggg==" posterAlt="placeholder" movieName="Movie Title" />
