@@ -5,6 +5,7 @@
   flex-direction: column;
 
   width: var(--size);
+  margin: 1rem;
 }
 
 .movie > img {
@@ -12,7 +13,7 @@
   height: var(--size);
   margin-bottom: 0.5rem;
 
-  border-radius: 22px;
+  border-radius: 20px;
 
   object-fit: cover;
 }
