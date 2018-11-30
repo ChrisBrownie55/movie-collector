@@ -17,7 +17,7 @@ export default class Movies extends Component {
       <div class={`${style.movies} page`}>
         <header class={style.header}>
           <img class={style.avatar} src={this.props.user.photoURL} alt="avatar" />
-          <Icon className={style.search} onClick={this.goToSearch}>search</Icon>
+          <Icon class={style.search} onClick={this.goToSearch}>search</Icon>
         </header>
         <Typography body1 class={style.displayName}>{this.props.user.displayName}'s Movies</Typography>
         <section class={style.moviesList}>

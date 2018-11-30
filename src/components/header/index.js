@@ -36,14 +36,14 @@ export default class Header extends Component {
   render(props) {
     return (
       <div>
-        <TopAppBar className="topappbar">
+        <TopAppBar class="topappbar">
           <TopAppBar.Row>
             <TopAppBar.Section align-start>
-              <TopAppBar.Icon className={`${style.pointer} ${style.menuIcon}`} menu navigation onClick={this.openDrawer}>
+              <TopAppBar.Icon class={`${style.pointer} ${style.menuIcon}`} menu navigation onClick={this.openDrawer}>
                 menu
               </TopAppBar.Icon>
-              <TopAppBar.Title className={style.title}>
-                <img className={style.filmIcon} src="../../assets/film-solid.svg" alt="film icon" />
+              <TopAppBar.Title class={style.title}>
+                <img class={style.filmIcon} src="../../assets/film-solid.svg" alt="film icon" />
                 Movie Collector
               </TopAppBar.Title>
             </TopAppBar.Section>
@@ -51,7 +51,7 @@ export default class Header extends Component {
               <CSSTransitionGroup transitionName="fade">
                 {
                   this.props.user
-                    ? <Button key={0} ripple className={style.logoutButton} onClick={this.props.onLogout}>Logout</Button>
+                    ? <Button key={0} ripple class={style.logoutButton} onClick={this.props.onLogout}>Logout</Button>
                     : null
                 }
               </CSSTransitionGroup>
@@ -60,15 +60,15 @@ export default class Header extends Component {
         </TopAppBar>
         <Drawer modal ref={this.drawerRef}>
           <Drawer.DrawerContent>
-            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
+            <Drawer.DrawerItem class={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
               <List.ItemGraphic>movie</List.ItemGraphic>
               Movies
             </Drawer.DrawerItem>
-            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/search'} onClick={this.goToSearch}>
+            <Drawer.DrawerItem class={style.pointer} selected={props.selectedRoute === '/search'} onClick={this.goToSearch}>
               <List.ItemGraphic>search</List.ItemGraphic>
               Search
             </Drawer.DrawerItem>
-            <Drawer.DrawerItem className={style.pointer} selected={props.selectedRoute === '/login'} onClick={this.goToLogin}>
+            <Drawer.DrawerItem class={style.pointer} selected={props.selectedRoute === '/login'} onClick={this.goToLogin}>
               <List.ItemGraphic>fingerprint</List.ItemGraphic>
               Login
             </Drawer.DrawerItem>
