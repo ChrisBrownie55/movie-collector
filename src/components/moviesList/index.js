@@ -15,7 +15,7 @@ export default class MoviesList extends Component {
           ))
         }
       </section>
-    )
+    );
   }
 
   static propTypes = {
@@ -34,5 +34,5 @@ export default class MoviesList extends Component {
       message: 'onAddToLibrary must be a function',
       isRequired: true
     }
-  }
+  };
 }
