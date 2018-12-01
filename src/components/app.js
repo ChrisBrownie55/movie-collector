@@ -9,7 +9,7 @@ import Search from '../routes/search';
 
 import NotFound from '../routes/404';
 
-import { auth, provider } from '../firebase';
+import { auth, provider, database } from '../firebase';
 
 export default class App extends Component {
   state = {
@@ -65,11 +65,12 @@ export default class App extends Component {
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.setState({ user }, () => {
-          if (this.currentUrl !== '/') {
-            route('/');
-          }
-        });
+        this.setState({
+          user,
+          movies: database.ref('/movies/' + user.uid)
+        }, () =>
+          this.currentUrl !== '/' && route('/')
+        );
       }
     });
   }
