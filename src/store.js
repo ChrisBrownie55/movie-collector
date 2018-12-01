@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
-import { auth, provider, database } from '../firebase';
+import router from 'preact-router';
+import { auth, provider, database } from './firebase';
 
 const initialState = {
   currentUrl: '',
@@ -9,15 +10,10 @@ const initialState = {
 
 const store = createStore((state=initialState, action) => {
   switch (action.type) {
-    case 'LOGIN':
+    case 'SET_USER':
       return {
         ...state,
         user: action.user
-      };
-    case 'LOGOUT':
-      return {
-        ...state,
-        user: null
       };
     case 'ADD_TO_LIBRARY':
       return {
@@ -27,7 +23,12 @@ const store = createStore((state=initialState, action) => {
       return {
         ...state
       };
-    case 'UPDATE_CURRENT_URL':
+    case 'SET_MOVIES':
+      return {
+        ...state,
+        movies: action.movies
+      };
+    case 'SET_CURRENT_URL':
       return {
         ...state,
         currentUrl: action.currentUrl
@@ -43,17 +44,69 @@ const store = createStore((state=initialState, action) => {
   return state;
 });
 
-function login(user) {
-  return {
-    type: 'LOGIN',
-    user
-  };
+auth.onAuthStateChanged(user => {
+  if (user) {
+    this.moviesRef = database.ref('/movies/' + user.uid);
+
+    // Get movies initially and on updates
+    // then store in state
+    this.moviesRef.on('value', snapshot => {
+      const movies = snapshot.val();
+      store.dispatch({
+        type: 'SET_MOVIES',
+        movies: Object.keys(movies)
+          // Get all of the movies and store their `id`
+          .map(key => ({
+            ...movies[key],
+            id: key
+          }))
+          // Sort the movies by their names
+          .sort((a, b) => a.movieName.localeCompare(b.movieName))
+      });
+    });
+
+    // Set user then go to home
+    store.dispatch({
+      type: 'SET_USER',
+      user
+    });
+
+    router.route('/');
+  }
+});
+
+async function login(user) {
+  try {
+    const { user } = await auth.signInWithPopup(provider);
+    store.dispatch({
+      type: 'SET_USER',
+      user
+    });
+  } catch (error) {
+    // TODO: Notify the user of error
+    console.error('An error has occurred while authenticating:', error);
+  }
 }
 
-function logout() {
-  return {
-    type: 'LOGOUT'
-  };
+async function logout() {
+  await auth.signOut();
+
+  store.dispatch({
+    type: 'SET_USER',
+    user: null
+  });
 }
 
-export { store, login, logout };
+function setCurrentURL(url) {
+  store.dispatch({
+    type: 'SET_CURRENT_URL',
+    currentUrl: url
+  });
+}
+
+function route(url, replace=false) {
+  setCurrentURL(url);
+  router.route(url, replace);
+}
+
+export { store, login, logout, route, setCurrentURL };
