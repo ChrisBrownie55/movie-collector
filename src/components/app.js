@@ -12,12 +12,6 @@ import Search from '../routes/search';
 import NotFound from '../routes/404';
 
 class App extends Component {
-  state = {
-    currentUrl: '',
-    user: null,
-    movies: []
-  }
-
   handleRoute = e => {
     switch (e.url) {
       case '/':
