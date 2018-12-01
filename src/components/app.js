@@ -66,6 +66,7 @@ export default class App extends Component {
     auth.onAuthStateChanged(user => {
       if (user) {
         this.moviesRef = database.ref('/movies/' + user.uid);
+
         // Get movies initially and on updates
         // then store in state
         this.moviesRef.on('value', snapshot => {
