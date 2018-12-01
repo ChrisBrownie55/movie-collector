@@ -1,23 +1,49 @@
 import { createStore } from 'redux';
+import { auth, provider, database } from '../firebase';
 
 const initialState = {
-
+  currentUrl: '',
+  user: null,
+  movies: []
 };
 
 const store = createStore((state=initialState, action) => {
   switch (action.type) {
     case 'LOGIN':
-      break;
+      return {
+        ...state,
+        user: action.user
+      };
     case 'LOGOUT':
-      break;
+      return {
+        ...state,
+        user: null
+      };
     case 'ADD_TO_LIBRARY':
-      break;
+      return {
+        ...state
+      };
     case 'REMOVE_FROM_LIBRARY':
-      break;
+      return {
+        ...state
+      };
     default:
       console.warn(`Warning: "${action.type}" is not an action`);
       break;
   }
 });
+
+function login(user) {
+  return {
+    type: 'LOGIN',
+    user
+  };
+}
+
+function logout() {
+  return {
+    type: 'LOGOUT'
+  };
+}
 
 export { store };
