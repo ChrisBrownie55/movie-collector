@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { Router, route } from 'preact-router';
 import { connect } from 'preact-redux';
 import { setCurrentURL } from '../store';
-import { auth, database } from '../firebase';
+import { auth, firestore } from '../firebase';
 
 import Header from './header';
 
@@ -44,18 +44,18 @@ class App extends Component {
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
-        const moviesRef = database.ref('/movies/' + user.uid);
+        const moviesRef = firestore.collection('movies').doc(user.uid);
 
         // Get movies initially and on updates
         // then store in state
-        moviesRef.on('value', snapshot => {
+        moviesRef.onSnapshot(snapshot => {
           // if there aren't any movies set it to empty array
-          if (!snapshot.exists()) {
+          if (!snapshot.exists) {
             moviesRef.set([]);
             return;
           }
 
-          const movies = snapshot.val();
+          const movies = snapshot.data();
           this.props.dispatch({
             type: 'SET_MOVIES',
             movies: Object.keys(movies)

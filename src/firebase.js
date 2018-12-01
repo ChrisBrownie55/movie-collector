@@ -1,4 +1,6 @@
 import firebase from 'firebase';
+// Required for side-effects
+import 'firebase/firestore';
 
 const config = {
   apiKey: 'AIzaSyCm2tf7uXDHtb9G78xVJA5841wNR0FT0aA',
@@ -13,7 +15,10 @@ firebase.initializeApp(config);
 
 export default firebase;
 
-export const database = firebase.database();
+export const firestore = firebase.firestore();
+
+firestore.settings({ timestampsInSnapshots: true });
+firestore.enablePersistence().catch(error => console.warn(error));
 
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const auth = firebase.auth();
