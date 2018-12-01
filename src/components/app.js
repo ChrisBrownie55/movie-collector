@@ -65,9 +65,26 @@ export default class App extends Component {
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
+        this.moviesRef = database.ref('/movies/' + user.uid);
+        // Get movies initially and on updates
+        // then store in state
+        this.moviesRef.on('value', snapshot => {
+          const movies = snapshot.val();
+          this.setState({
+            movies: Object.keys(movies)
+              // Get all of the movies and store their `id`
+              .map(key => ({
+                ...movies[key],
+                id: key
+              }))
+              // Sort the movies by their names
+              .sort((a, b) => a.movieName.localeCompare(b.movieName))
+          });
+        });
+
+        // Set user then go to home
         this.setState({
-          user,
-          movies: database.ref('/movies/' + user.uid)
+          user
         }, () =>
           this.currentUrl !== '/' && route('/')
         );
