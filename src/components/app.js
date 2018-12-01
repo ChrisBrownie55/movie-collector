@@ -55,14 +55,14 @@ class App extends Component {
             return;
           }
 
-          const movies = snapshot.data();
+          const { movies } = snapshot.data();
           this.props.dispatch({
             type: 'SET_MOVIES',
-            movies: Object.keys(movies)
-              // Get all of the movies and store their `id`
-              .map(key => ({
-                ...movies[key],
-                id: key
+            movies: movies
+              // Get all of the movies and store their indices with them
+              .map((movie, index) => ({
+                ...movie,
+                index
               }))
               // Sort the movies by their names
               .sort((a, b) => a.movieName.localeCompare(b.movieName))
