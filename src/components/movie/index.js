@@ -1,5 +1,6 @@
 
 import { h, Component } from 'preact';
+import { addToLibrary, removeFromLibrary } from '../../store';
 import style from './style.css';
 
 export default class Movie extends Component {

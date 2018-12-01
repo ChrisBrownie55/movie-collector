@@ -9,11 +9,7 @@ export default class MoviesList extends Component {
       <section class={style.moviesList}>
         {
           this.props.movies.map(movie => (
-            <Movie
-              {...movie}
-              onRemoveFromLibrary={this.props.onRemoveFromLibrary}
-              onAddToLibrary={this.props.onAddToLibrary}
-            />
+            <Movie {...movie} />
           ))
         }
       </section>
