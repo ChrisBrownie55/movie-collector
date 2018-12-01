@@ -3,7 +3,7 @@ import Movie from '../movie';
 
 import style from './style.css';
 
-const isFunction = value => value instanceof Function;
+const isFunctionOrNull = value => value instanceof Function || value === null;
 
 export default class MoviesList extends Component {
   render() {
@@ -11,7 +11,11 @@ export default class MoviesList extends Component {
       <section class={style.moviesList}>
         {
           this.props.movies.map(movie => (
-            <Movie {...movie} />
+            <Movie
+              {...movie}
+              onRemoveFromLibrary={this.props.onRemoveFromLibrary}
+              onAddToLibrary={this.props.onAddToLibrary}
+            />
           ))
         }
       </section>
@@ -25,13 +29,13 @@ export default class MoviesList extends Component {
       isRequired: true
     },
     onRemoveFromLibrary: {
-      checker: isFunction,
-      message: 'onRemoveFromLibrary must be a function',
+      checker: isFunctionOrNull,
+      message: 'onRemoveFromLibrary must be a function or null',
       isRequired: true
     },
     onAddToLibrary: {
-      checker: isFunction,
-      message: 'onAddToLibrary must be a function',
+      checker: isFunctionOrNull,
+      message: 'onAddToLibrary must be a function or null',
       isRequired: true
     }
   };
