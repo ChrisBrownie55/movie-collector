@@ -19,17 +19,4 @@ export default class Movies extends Component {
       </div>
     );
   }
-
-  static propTypes = {
-    user: {
-      checker: value => value instanceof Object,
-      message: 'user must be an object',
-      isRequired: true
-    },
-    movies: {
-      checker: value => Array.isArray(value) && value.every(v => v instanceof Object),
-      message: 'movies must be an array of objects',
-      isRequired: true
-    }
-  }
 }
