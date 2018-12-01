@@ -3,7 +3,6 @@ import { route } from 'preact-router';
 
 import Icon from 'preact-material-components/Icon';
 
-import Movie from '../../components/movie';
 import style from './style.css';
 
 export default class Movies extends Component {
@@ -17,10 +16,6 @@ export default class Movies extends Component {
           <Icon class={style.search} onClick={this.goToSearch}>search</Icon>
         </header>
         <h1 class={style.displayName}>{this.props.user.displayName.split(' ')[0]}'s Movies</h1>
-        <section class={style.moviesList}>
-          <Movie posterSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcvWv3fwAHmQMx4nFrOwAAAABJRU5ErkJggg==" posterAlt="placeholder" movieName="Movie Title" />
-          <Movie posterSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcvWv3fwAHmQMx4nFrOwAAAABJRU5ErkJggg==" posterAlt="placeholder" movieName="Movie Title" />
-        </section>
       </div>
     );
   }
