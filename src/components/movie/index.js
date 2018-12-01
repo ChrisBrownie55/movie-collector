@@ -7,8 +7,8 @@ const isString = value => typeof value === 'string'
 export default class Movie extends Component {
   render() {
     return (
-      <figure class={style.movie}>
-        <img src={this.props.posterSrc} alt={this.props.posterAlt} />
+      <figure class={style.movie}></figure>
+        <img src={`https://image.tmdb.org/t/p/w185${this.props.posterSrc}`} alt={this.props.posterAlt} />
         <figcaption>{this.props.movieName}</figcaption>
       </figure>
     );
