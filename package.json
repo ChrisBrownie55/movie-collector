@@ -26,6 +26,10 @@
           "SwitchCase": 1
         }
       ],
+      "react/jsx-indent-props": [
+        "error",
+        2
+      ],
       "brace-style": [
         "error",
         "1tbs"
