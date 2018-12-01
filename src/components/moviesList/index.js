@@ -10,7 +10,9 @@ export default class MoviesList extends Component {
     return (
       <section class={style.moviesList}>
         {
-
+          this.props.movies.map(movie => (
+            <Movie {...movie} />
+          ))
         }
       </section>
     )
