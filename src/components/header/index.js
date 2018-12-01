@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
-import { route } from 'preact-router';
 import CSSTransitionGroup from 'preact-css-transition-group';
+import { route, logout } from '../../store';
+import { connect } from 'preact-redux';
 
 // Material Components
 import TopAppBar from 'preact-material-components/TopAppBar';
@@ -18,7 +19,7 @@ import 'preact-material-components/Theme/style.css';
 // My CSS
 import style from './style';
 
-export default class Header extends Component {
+class Header extends Component {
   drawerRef = drawer => this.drawer = drawer;
 
   closeDrawer = () => this.drawer.MDComponent.open = false;
@@ -33,7 +34,7 @@ export default class Header extends Component {
   goToSearch = this.linkTo('/search');
   goToLogin = this.linkTo('/login');
 
-  render(props) {
+  render({ currentURL, user }) {
     return (
       <div>
         <TopAppBar class="topappbar">
@@ -50,8 +51,8 @@ export default class Header extends Component {
             <TopAppBar.Section align-end shrink-to-fit>
               <CSSTransitionGroup transitionName="fade">
                 {
-                  this.props.user
-                    ? <Button key={0} ripple class={style.logoutButton} onClick={this.props.onLogout}>Logout</Button>
+                  user
+                    ? <Button key={0} ripple class={style.logoutButton} onClick={logout}>Logout</Button>
                     : null
                 }
               </CSSTransitionGroup>
@@ -60,15 +61,15 @@ export default class Header extends Component {
         </TopAppBar>
         <Drawer modal ref={this.drawerRef}>
           <Drawer.DrawerContent>
-            <Drawer.DrawerItem class={style.pointer} selected={props.selectedRoute === '/'} onClick={this.goHome}>
+            <Drawer.DrawerItem class={style.pointer} selected={currentURL === '/'} onClick={this.goHome}>
               <List.ItemGraphic>movie</List.ItemGraphic>
               Movies
             </Drawer.DrawerItem>
-            <Drawer.DrawerItem class={style.pointer} selected={props.selectedRoute === '/search'} onClick={this.goToSearch}>
+            <Drawer.DrawerItem class={style.pointer} selected={currentURL === '/search'} onClick={this.goToSearch}>
               <List.ItemGraphic>search</List.ItemGraphic>
               Search
             </Drawer.DrawerItem>
-            <Drawer.DrawerItem class={style.pointer} selected={props.selectedRoute === '/login'} onClick={this.goToLogin}>
+            <Drawer.DrawerItem class={style.pointer} selected={currentURL === '/login'} onClick={this.goToLogin}>
               <List.ItemGraphic>fingerprint</List.ItemGraphic>
               Login
             </Drawer.DrawerItem>
@@ -78,3 +79,7 @@ export default class Header extends Component {
     );
   }
 }
+
+export default connect(
+  ({ user, currentURL }) => ({ user, currentURL })
+)(Header);

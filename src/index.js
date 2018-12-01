@@ -1,4 +1,13 @@
 import './style';
 import App from './components/app';
 
-export default App;
+import { store } from './store.js';
+import { Provider } from 'preact-redux';
+
+const AppWithStore = props => (
+  <Provider store={store}>
+    <App {...props} />
+  </Provider>
+);
+
+export default AppWithStore;
