@@ -71,9 +71,3 @@
   font-weight: bold;
   letter-spacing: 0.5px;
 }
-
-.moviesList {
-  display: none;
-  justify-content: center;
-  flex-wrap: wrap;
-}

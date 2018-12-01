@@ -1,0 +1,5 @@
+.moviesList {
+  display: none;
+  justify-content: center;
+  flex-wrap: wrap;
+}
