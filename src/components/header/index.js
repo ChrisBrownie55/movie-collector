@@ -1,7 +1,8 @@
 import { h, Component } from 'preact';
 import CSSTransitionGroup from 'preact-css-transition-group';
-import { route, logout } from '../../store';
+import { route } from 'preact-router';
 import { connect } from 'preact-redux';
+import { logout } from '../../store';
 
 // Material Components
 import TopAppBar from 'preact-material-components/TopAppBar';

@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
-import router from 'preact-router';
+import { route } from 'preact-router';
 import { auth, provider, database } from './firebase';
 
 const initialState = {
-  currentUrl: '',
+  currentURL: '',
   user: null,
   movies: []
 };
@@ -31,7 +31,7 @@ const store = createStore((state=initialState, action) => {
     case 'SET_CURRENT_URL':
       return {
         ...state,
-        currentUrl: action.currentUrl
+        currentURL: action.currentURL
       };
     case 'ERROR':
       // TODO: Tell user to try again
@@ -46,11 +46,17 @@ const store = createStore((state=initialState, action) => {
 
 auth.onAuthStateChanged(user => {
   if (user) {
-    this.moviesRef = database.ref('/movies/' + user.uid);
+    const moviesRef = database.ref('/movies/' + user.uid);
 
     // Get movies initially and on updates
     // then store in state
-    this.moviesRef.on('value', snapshot => {
+    moviesRef.on('value', snapshot => {
+      // if there aren't any movies set it to empty array
+      if (!snapshot.exists()) {
+        moviesRef.set([]);
+        return;
+      }
+
       const movies = snapshot.val();
       store.dispatch({
         type: 'SET_MOVIES',
@@ -71,7 +77,7 @@ auth.onAuthStateChanged(user => {
       user
     });
 
-    router.route('/');
+    route('/');
   }
 });
 
@@ -100,13 +106,8 @@ async function logout() {
 function setCurrentURL(url) {
   store.dispatch({
     type: 'SET_CURRENT_URL',
-    currentUrl: url
+    currentURL: url
   });
 }
 
-function route(url, replace=false) {
-  setCurrentURL(url);
-  router.route(url, replace);
-}
-
-export { store, login, logout, route, setCurrentURL };
+export { store, login, logout, setCurrentURL };

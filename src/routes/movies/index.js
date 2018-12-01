@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { route } from '../../store';
+import { route } from 'preact-router';
 import { connect } from 'preact-redux';
 
 import Icon from 'preact-material-components/Icon';
