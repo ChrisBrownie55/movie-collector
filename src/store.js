@@ -70,4 +70,8 @@ function setCurrentURL(url) {
   });
 }
 
-export { store, login, logout, setCurrentURL };
+// TODO: Implement these functions
+function addToLibrary() {}
+function removeFromLibrary() {}
+
+export { store, login, logout, setCurrentURL, addToLibrary, removeFromLibrary };
