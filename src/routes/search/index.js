@@ -9,8 +9,6 @@ import Icon from 'preact-material-components/Icon';
 
 import style from './style.css';
 
-const apiURL = query => `https://api.themoviedb.org/3/search/movie?page=1&query=${query}&language=en-US&api_key=c484c277ac7430163b9fe24f31a93f16`;
-
 class Search extends Component {
   state = {
     query: '',
@@ -21,43 +19,57 @@ class Search extends Component {
   }
 
   goToMovies = () => route('/');
+
+  getMovieApiData = async (query, pageNumber=1) => {
+    try {
+      const res = await fetch(`https://api.themoviedb.org/3/search/movie?page=${pageNumber}&query=${query}&language=en-US&api_key=c484c277ac7430163b9fe24f31a93f16`);
+      const {
+        page,
+        total_pages: totalPages,
+        total_results: totalResults,
+        results
+      } = await res.json();
+
+      this.setState({
+        query,
+        page,
+        totalPages,
+        totalResults,
+        results: results.map(movie => ({
+          posterSrc: movie.poster_path,
+          movieName: movie.title
+        }))
+      });
+    } catch (error) {
+      console.warn('Warning, an error has occurred:', error);
+      // TODO: Notify user unable to fetch
+    }
+  }
+
   handleInput = debounce(event => {
     const query = encodeURIComponent(event.target.value);
-    fetch(apiURL(query))
-      .then(res => res.json())
-      .then(({ page, total_pages: totalPages, total_results: totalResults, results }) => {
-        this.setState({
-          query,
-          page,
-          totalPages,
-          totalResults,
-          results: results.map(movie => ({
-            posterSrc: movie.poster_path,
-            movieName: movie.title
-          }))
-        });
-      }).catch(error => console.error(error)); // TODO: Notify user unable to fetch
+    this.getMovieApiData(query);
   }, 500);
 
   loadPage = pageNumber => {
-    apiURL(this.state.query);
+    this.getMovieApiData(this.state.query, pageNumber);
   }
 
-  prevPage = () => {
+  previousPage = () => {
     if (this.state.page === 1) return;
-
+    this.loadPage(this.state.page - 1);
   }
   nextPage = () => {
     if (this.state.page === this.state.totalPages) return;
-
+    this.loadPage(this.state.page + 1);
   };
 
   render({ user: { photoURL } }, { page, totalPages }) {
     const pageIndicator = page && (
       <section class={style.pageIndicator}>
-        <button class={style.back} disabled={page < 1}>&lt;</button>
+        <button onClick={this.previousPage} class={style.back} disabled={page <= 1}>&lt;</button>
         <span class={style.pageNumber}>{page} of {totalPages}</span>
-        <button class={style.forward} disabled={page >= totalPages}>&gt;</button>
+        <button onClick={this.nextPage} class={style.forward} disabled={page >= totalPages}>&gt;</button>
       </section>
     );
 
