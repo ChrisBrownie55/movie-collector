@@ -45,7 +45,7 @@ class Header extends Component {
                 menu
               </TopAppBar.Icon>
               <TopAppBar.Title class={style.title}>
-                <img class={style.filmIcon} src="../../assets/film-solid.svg" alt="film icon" />
+                <img class={style.filmIcon} src="../../assets/logo.svg" alt="movie collector logo" />
                 Movie Collector
               </TopAppBar.Title>
             </TopAppBar.Section>
