@@ -1,28 +1,31 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import { connect } from 'preact-redux';
-
 import debounce from 'lodash/debounce';
 
 import MoviesList from '../../components/movies-list';
 import Icon from 'preact-material-components/Icon';
+import IconButton from 'preact-material-components/IconButton';
+import 'preact-material-components/IconButton/style.css';
 
 import style from './style.css';
 
+const initialState = {
+  query: '',
+  results: [],
+  page: null,
+  totalPages: null,
+  totalResults: null
+};
+
 class Search extends Component {
-  state = {
-    query: '',
-    results: [],
-    page: null,
-    totalPages: null,
-    totalResults: null
-  }
+  state = { ...initialState };
 
   goToMovies = () => route('/');
 
   getMovieApiData = async (query, pageNumber=1) => {
     try {
-      const res = await fetch(`https://api.themoviedb.org/3/search/movie?page=${pageNumber}&query=${query}&language=en-US&api_key=c484c277ac7430163b9fe24f31a93f16`);
+      const res = await fetch(`https://api.themoviedb.org/3/search/movie?include_adult=false&page=${pageNumber}&query=${query}&language=en-US&api_key=c484c277ac7430163b9fe24f31a93f16`);
       const {
         page,
         total_pages: totalPages,
@@ -37,7 +40,8 @@ class Search extends Component {
         totalResults,
         results: results.map(movie => ({
           posterSrc: movie.poster_path,
-          movieName: movie.title
+          movieName: movie.title,
+          id: movie.id
         }))
       });
     } catch (error) {
@@ -47,6 +51,10 @@ class Search extends Component {
   }
 
   handleInput = debounce(event => {
+    if (event.target.value === '') {
+      this.setState({ ...initialState });
+      return;
+    }
     const query = encodeURIComponent(event.target.value);
     this.getMovieApiData(query);
   }, 500);
@@ -64,14 +72,21 @@ class Search extends Component {
     this.loadPage(this.state.page + 1);
   };
 
-  render({ user: { photoURL } }, { page, totalPages }) {
-    const pageIndicator = page && (
-      <section class={style.pageIndicator}>
-        <button onClick={this.previousPage} class={style.back} disabled={page <= 1}>&lt;</button>
-        <span class={style.pageNumber}>{page} of {totalPages}</span>
-        <button onClick={this.nextPage} class={style.forward} disabled={page >= totalPages}>&gt;</button>
-      </section>
-    );
+  render({ user: { photoURL } }, { page, totalPages, results }) {
+    const pageIndicator = results.length
+      ? (
+        <footer class={style.pageIndicator}>
+          { page > 1
+            ? <IconButton onClick={this.previousPage} class={style.back}><i class="material-icons">keyboard_arrow_left</i></IconButton>
+            : null
+          }
+          <p class={style.pageNumber}>page {page} of {totalPages}</p>
+          { page < totalPages
+            ? <IconButton onClick={this.nextPage} class={style.forward}><i class="material-icons">keyboard_arrow_right</i></IconButton>
+            : null
+          }
+        </footer>)
+      : null;
 
     return (
       <div class={`${style.searchPage} page`}>
@@ -83,7 +98,7 @@ class Search extends Component {
           <label for="search-input">Search Movies</label>
           <input onInput={this.handleInput} id="search-input" name="search" type="text" placeholder="Fantastic Beasts" />
         </div>
-        <MoviesList movies={this.state.results} />
+        <MoviesList movies={results} />
         {pageIndicator}
       </div>
     );

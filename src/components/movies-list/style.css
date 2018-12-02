@@ -2,4 +2,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
+  max-width: calc(9rem * 5);
 }

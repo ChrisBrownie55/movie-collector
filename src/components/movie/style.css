@@ -16,6 +16,7 @@
   border-radius: 20px;
 
   object-fit: cover;
+  background-color: #c4c4c4;
 }
 
 .movie > figcaption {

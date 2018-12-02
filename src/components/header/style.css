@@ -31,6 +31,15 @@
   font-size: 2rem;
 }
 
-.fade-enter, .fade-leave-active { opacity: 0; }
-.fade-leave, .fade-enter-active { opacity: 1; }
-.fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
+:global(.fade-enter),
+:global(.fade-leave-active) {
+  opacity: 0;
+}
+:global(.fade-leave),
+:global(.fade-enter-active) {
+  opacity: 1;
+}
+:global(.fade-enter-active),
+:global(.fade-leave-active) {
+  transition: opacity 250ms;
+}

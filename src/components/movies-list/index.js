@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import CSSTransitionGroup from 'preact-css-transition-group';
 import { connect } from 'preact-redux';
 import { addToLibrary, removeFromLibrary } from '../../store';
 import Movie from '../movie';
@@ -20,13 +21,19 @@ class MoviesList extends Component {
 
   render() {
     return (
-      <section class={style.moviesList}>
+      <CSSTransitionGroup
+        component="section"
+        class={style.moviesList}
+        transitionName="fade"
+        transitionEnterTimeout={250}
+        transitionLeaveTimeout={250}
+      >
         {
           this.props.movies.map(movie => (
-            <Movie {...movie} {...this.movieListener} />
+            <Movie key={movie.id} {...movie} {...this.movieListener} />
           ))
         }
-      </section>
+      </CSSTransitionGroup>
     );
   }
 }

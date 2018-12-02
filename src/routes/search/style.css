@@ -54,3 +54,13 @@
 
   border-radius: 50%;
 }
+
+.searchPage > .pageIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchPage > .pageIndicator > p {
+  margin: 0 1rem;
+}
