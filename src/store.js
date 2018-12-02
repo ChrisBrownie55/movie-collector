@@ -56,6 +56,7 @@ async function login(user) {
 
 async function logout() {
   await auth.signOut();
+  route('/login');
 
   store.dispatch({
     type: 'SET_USER',
