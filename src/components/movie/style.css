@@ -1,11 +1,11 @@
 .movie {
-  --size: 7rem;
+  --size: 9rem;
 
   display: flex;
   flex-direction: column;
 
   width: var(--size);
-  margin: 1rem;
+  margin: 1.25rem;
 }
 
 .movie > .moviePoster {
@@ -25,7 +25,10 @@
 
 .movie > figcaption {
   text-align: center;
+
+  /* Truncates text with '...' */
   width: 100%;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
