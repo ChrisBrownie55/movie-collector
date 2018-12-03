@@ -17,7 +17,8 @@
 }
 
 @media (max-width: 598px) {
-  .logoutButton:not(:disabled) {
+  .logoutButton:not(:disabled),
+  .attribution {
     margin-right: 0.5rem;
   }
 }
