@@ -1,5 +1,5 @@
 .moviesList {
-  width: 100vw;
+  width: calc(100vw - 2rem);
 }
 .moviesList > :global(span) {
   display: grid;
