@@ -4,10 +4,13 @@ import { connect } from 'preact-redux';
 import debounce from 'lodash/debounce';
 
 import MoviesList from '../../components/movies-list';
+import Illustration from '../../components/illustration';
+
 import Icon from 'preact-material-components/Icon';
 import IconButton from 'preact-material-components/IconButton';
 import 'preact-material-components/IconButton/style.css';
 
+import svg from '../../assets/empty-search.svg';
 import style from './style.css';
 
 const initialState = {
@@ -103,6 +106,14 @@ class Search extends Component {
           <label for="search-input">Search Movies</label>
           <input onChange={this.handleChange} onInput={this.handleInput} id="search-input" name="search" type="text" placeholder="Fantastic Beasts" />
         </div>
+        {!inputFilled
+          ? (
+            <Illustration src={svg} alt="Illustration of a lady on a bench">
+              Waiting for instructions...
+            </Illustration>
+          )
+          : null
+        }
         <MoviesList movies={results} />
         {pageIndicator}
       </div>

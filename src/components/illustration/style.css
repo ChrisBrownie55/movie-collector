@@ -1,0 +1,17 @@
+.illustration {
+  width: 290px;
+  margin-top: 5rem;
+}
+
+.illustration > img {
+  width: 100%;
+}
+
+.illustration > p {
+  color: hsl(220, 19%, 78%);
+
+  font-family: Roboto, system-ui;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 1.25px;
+}
