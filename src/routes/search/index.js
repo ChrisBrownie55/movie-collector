@@ -41,7 +41,7 @@ class Search extends Component {
         results: results.map(movie => ({
           posterSrc: movie.poster_path,
           movieName: movie.title,
-          id: movie.id
+          tmbdId: movie.id
         }))
       });
     } catch (error) {
