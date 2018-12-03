@@ -111,7 +111,7 @@ class Search extends Component {
                 Waiting for instructions...
               </Illustration>
             )
-            : <MoviesList key={1} movies={results} />
+            : <MoviesList key={1} movies={results} style={{ marginTop: '2rem' }} />
           }
         </Animate>
         {pageIndicator}

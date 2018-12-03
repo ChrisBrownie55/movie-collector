@@ -21,12 +21,15 @@ class Movies extends Component {
           <Icon class={style.search} onClick={this.goToSearch}>search</Icon>
         </header>
         <h1 class={style.displayName}>{displayName.split(' ')[0]}'s Movies</h1>
-        <Illustration src={svg} alt="Darth Vader attacking Luke Skywalker">
-          You don’t have any movies yet.
-          <br />
-          Try adding them from the search tab.
-        </Illustration>
-        <MoviesList movies={movies} />
+        { !movies.length
+          ? (
+            <Illustration src={svg} alt="Darth Vader attacking Luke Skywalker">
+              You don’t have any movies yet.
+              <br />
+              Try adding them from the search tab.
+            </Illustration>
+          ) : <MoviesList movies={movies} />
+        }
       </div>
     );
   }

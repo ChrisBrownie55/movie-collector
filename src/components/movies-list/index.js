@@ -6,19 +6,17 @@ import Movie from '../movie';
 import style from './style.css';
 
 class MoviesList extends Component {
-  render() {
+  render({ movies, ...props }) {
     return (
-      <Animate
-        component="section"
-        class={style.moviesList}
-        transitionName="fade"
-      >
-        {
-          this.props.movies.map(movie => (
-            <Movie key={movie.tmbdId} {...movie} />
-          ))
-        }
-      </Animate>
+      <section class={style.moviesList} {...props}>
+        <Animate transitionName="fade">
+          {
+            movies.map(movie => (
+              <Movie key={movie.tmbdId} {...movie} />
+            ))
+          }
+        </Animate>
+      </section>
     );
   }
 }

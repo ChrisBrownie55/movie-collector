@@ -1,4 +1,7 @@
 .moviesList {
+  width: 100vw;
+}
+.moviesList > :global(span) {
   display: grid;
   grid-template-columns: repeat(auto-fill, 9rem);
   grid-gap: 1.25rem;
