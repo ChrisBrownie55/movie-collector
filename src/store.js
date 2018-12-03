@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 import { route } from 'preact-router';
-import { auth, provider, firestore } from './firebase';
+import firebase, { auth, provider, firestore } from './firebase';
 
 const initialState = {
   currentURL: '',
@@ -73,11 +73,18 @@ function setCurrentURL(url) {
   });
 }
 
-// TODO: Implement these functions
-function addToLibrary() {
-
+function addToLibrary(movie) {
+  return moviesRef.update({
+    movies: firebase.firestore.FieldValue.arrayUnion(movie)
+  });
 }
-function removeFromLibrary() {}
+
+function removeFromLibrary(movie) {
+  console.log(movie);
+  return moviesRef.update({
+    movies: firebase.firestore.FieldValue.arrayRemove(movie)
+  });
+}
 
 function setupFirebase() {
   auth.onAuthStateChanged(user => {
@@ -99,11 +106,6 @@ function setupFirebase() {
         store.dispatch({
           type: 'SET_MOVIES',
           movies: movies
-            // Get all of the movies and store their indices with them
-            .map((movie, index) => ({
-              ...movie,
-              index
-            }))
             // Sort the movies by their names
             .sort((a, b) => a.movieName.localeCompare(b.movieName))
         });

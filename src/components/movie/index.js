@@ -21,14 +21,18 @@ export default class Movie extends Component {
     });
   }
 
-  removeToLibrary = () => {
-    this.props.removeFromLibrary(this.props.tmbdId);
+  removeFromLibrary = () => {
+    this.props.removeFromLibrary({
+      movieName: this.props.movieName,
+      posterSrc: this.props.posterSrc,
+      tmbdId: this.props.tmbdId
+    });
   }
 
   render({ movieName, posterSrc }, { validImage }) {
     let actionButton = this.props.addToLibrary
-      ? <button outlined onClick={this.addToLibrary} class={style.actionButton}>Add to library</button>
-      : <button outlined onClick={this.removeFromLibrary} class={style.actionButton}>Remove from library</button>;
+      ? <button onClick={this.addToLibrary} class={style.actionButton}>Add to library</button>
+      : <button onClick={this.removeFromLibrary} class={style.actionButton}>Remove from library</button>;
     return (
       <figure class={style.movie}>
         <div class={style.actions}>
