@@ -19,7 +19,10 @@ const initialState = {
 };
 
 class Search extends Component {
-  state = { ...initialState };
+  state = {
+    ...initialState,
+    inputFilled: false
+  };
 
   goToMovies = () => route('/');
 
@@ -72,7 +75,9 @@ class Search extends Component {
     this.loadPage(this.state.page + 1);
   };
 
-  render({ user: { photoURL } }, { page, totalPages, results }) {
+  handleChange = event => this.setState({ inputFilled: !!event.target.value })
+
+  render({ user: { photoURL } }, { page, totalPages, results, inputFilled }) {
     const pageIndicator = results.length
       ? (
         <footer class={style.pageIndicator}>
@@ -94,9 +99,9 @@ class Search extends Component {
           <img onClick={this.goToMovies} class={style.avatar} src={photoURL} alt="avatar" />
           <Icon class={style.search}>search</Icon>
         </header>
-        <div class={style.searchInput}>
+        <div class={`${style.searchInput} ${inputFilled ? style.inputFilled : ''}`}>
           <label for="search-input">Search Movies</label>
-          <input onInput={this.handleInput} id="search-input" name="search" type="text" placeholder="Fantastic Beasts" />
+          <input onChange={this.handleChange} onInput={this.handleInput} id="search-input" name="search" type="text" placeholder="Fantastic Beasts" />
         </div>
         <MoviesList movies={results} />
         {pageIndicator}
