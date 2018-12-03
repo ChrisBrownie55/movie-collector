@@ -30,7 +30,7 @@ class MoviesList extends Component {
       >
         {
           this.props.movies.map(movie => (
-            <Movie key={movie.id} {...movie} {...this.movieListener} />
+            <Movie key={movie.tmbdId} {...movie} {...this.movieListener} />
           ))
         }
       </CSSTransitionGroup>
