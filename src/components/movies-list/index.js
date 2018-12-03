@@ -7,7 +7,7 @@ import Movie from '../movie';
 import style from './style.css';
 
 class MoviesList extends Component {
-  componentDidUpdate() {
+  componentDidMount() {
     if (this.props.currentURL === '/') {
       this.movieListener = {
         removeFromLibrary
