@@ -60,5 +60,4 @@ typings/
 .DS_Store
 
 # lock files
-yarn.lock
 package-lock.json
