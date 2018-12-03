@@ -1,10 +1,11 @@
 .illustration {
-  width: 290px;
+  width: 341px;
   margin-top: 5rem;
 }
 
 .illustration > img {
-  width: 100%;
+  width: 290px;
+  margin-left: 25px;
 }
 
 .illustration > p {

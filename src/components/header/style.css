@@ -37,16 +37,3 @@
 .menuIcon {
   font-size: 2rem;
 }
-
-:global(.fade-enter),
-:global(.fade-leave-active) {
-  opacity: 0;
-}
-:global(.fade-leave),
-:global(.fade-enter-active) {
-  opacity: 1;
-}
-:global(.fade-enter-active),
-:global(.fade-leave-active) {
-  transition: opacity 250ms;
-}

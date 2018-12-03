@@ -2,9 +2,11 @@ import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import { connect } from 'preact-redux';
 import debounce from 'lodash/debounce';
+import CSSTransitionGroup from 'preact-css-transition-group';
 
 import MoviesList from '../../components/movies-list';
 import Illustration from '../../components/illustration';
+import SearchInput from '../../components/search-input';
 
 import Icon from 'preact-material-components/Icon';
 import IconButton from 'preact-material-components/IconButton';
@@ -56,13 +58,14 @@ class Search extends Component {
     }
   }
 
-  handleInput = debounce(event => {
-    if (event.target.value === '') {
-      this.setState({ ...initialState });
+  handleInput = debounce(async value => {
+    if (value === '') {
+      this.setState({ ...initialState, inputFilled: false });
       return;
     }
-    const query = encodeURIComponent(event.target.value);
-    this.getMovieApiData(query);
+    const query = encodeURIComponent(value);
+    await this.getMovieApiData(query);
+    this.setState({ inputFilled: true });
   }, 500);
 
   loadPage = pageNumber => {
@@ -77,8 +80,6 @@ class Search extends Component {
     if (this.state.page === this.state.totalPages) return;
     this.loadPage(this.state.page + 1);
   };
-
-  handleChange = event => this.setState({ inputFilled: !!event.target.value })
 
   render({ user: { photoURL } }, { page, totalPages, results, inputFilled }) {
     const pageIndicator = results.length
@@ -102,19 +103,21 @@ class Search extends Component {
           <img onClick={this.goToMovies} class={style.avatar} src={photoURL} alt="avatar" />
           <Icon class={style.search}>search</Icon>
         </header>
-        <div class={`${style.searchInput} ${inputFilled ? style.inputFilled : ''}`}>
-          <label for="search-input">Search Movies</label>
-          <input onChange={this.handleChange} onInput={this.handleInput} id="search-input" name="search" type="text" placeholder="Fantastic Beasts" />
-        </div>
-        {!inputFilled
-          ? (
-            <Illustration src={svg} alt="Illustration of a lady on a bench">
-              Waiting for instructions...
-            </Illustration>
-          )
-          : null
-        }
-        <MoviesList movies={results} />
+        <SearchInput onInput={this.handleInput} label="Search movies" id="search-input" name="search" type="text" placeholder="Fantastic Beasts" />
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}
+        >
+          {!inputFilled
+            ? (
+              <Illustration key={0} src={svg} alt="Illustration of a lady on a bench">
+                Waiting for instructions...
+              </Illustration>
+            )
+            : <MoviesList key={1} movies={results} />
+          }
+        </CSSTransitionGroup>
         {pageIndicator}
       </div>
     );

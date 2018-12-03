@@ -40,7 +40,7 @@ class Movie extends Component {
         <div class={style.actions}>
           {actionButton}
         </div>
-        {validImage
+        {validImage && posterSrc
           ? <img class={style.moviePoster} onError={this.handleError} src={`https://image.tmdb.org/t/p/w185${posterSrc}`} alt="movie poster" />
           : (
             <svg class={style.moviePoster} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 110" fill="none">

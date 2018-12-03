@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import CSSTransitionGroup from 'preact-css-transition-group';
+import Animate from 'preact-animate';
 import { route } from 'preact-router';
 import { connect } from 'preact-redux';
 import { logout } from '../../store';
@@ -50,12 +50,7 @@ class Header extends Component {
               </TopAppBar.Title>
             </TopAppBar.Section>
             <TopAppBar.Section align-end shrink-to-fit>
-              <CSSTransitionGroup
-                transitionName="fade"
-                transitionEnterTimeout={250}
-                transitionLeaveTimeout={250}
-                exclusive
-              >
+              <Animate transitionName="fade" exclusive>
                 {
                   user
                     ? <Button key={0} ripple class={style.logoutButton} onClick={logout}>Logout</Button>
@@ -69,7 +64,7 @@ class Header extends Component {
                       </svg>
                     )
                 }
-              </CSSTransitionGroup>
+              </Animate>
             </TopAppBar.Section>
           </TopAppBar.Row>
         </TopAppBar>

@@ -1,4 +1,4 @@
-import './style';
+import './style/index.css';
 import App from './components/app';
 
 import { store } from './store.js';
