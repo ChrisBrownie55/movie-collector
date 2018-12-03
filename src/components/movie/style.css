@@ -1,6 +1,8 @@
 .movie {
   --size: 9rem;
 
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
@@ -21,6 +23,27 @@
 .movie > svg.moviePoster {
   padding: 1rem;
   background: linear-gradient(135deg, hsl(0, 0%, 95%), hsl(0, 0%, 85%));
+}
+
+.movie > .actions {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: var(--size);
+  height: var(--size);
+
+  background-color: transparent;
+
+  border-radius: 20px;
+  opacity: 0;
+
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.movie:hover > .actions {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
 }
 
 .movie > figcaption {
