@@ -1,12 +1,14 @@
 import { createStore } from 'redux';
 import { route } from 'preact-router';
-import { auth, provider, database } from './firebase';
+import { auth, provider, firestore } from './firebase';
 
 const initialState = {
   currentURL: '',
   user: null,
   movies: []
 };
+
+let moviesRef;
 
 const store = createStore((state=initialState, action) => {
   switch (action.type) {
@@ -72,7 +74,48 @@ function setCurrentURL(url) {
 }
 
 // TODO: Implement these functions
-function addToLibrary() {}
+function addToLibrary() {
+
+}
 function removeFromLibrary() {}
 
-export { store, login, logout, setCurrentURL, addToLibrary, removeFromLibrary };
+function setupFirebase() {
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      moviesRef = firestore.collection('movies').doc(user.uid);
+
+      // Get movies initially and on updates
+      // then store in state
+      moviesRef.onSnapshot(snapshot => {
+        // if there aren't any movies set it to empty array
+        if (!snapshot.exists) {
+          moviesRef.set({
+            movies: []
+          });
+          return;
+        }
+
+        const { movies } = snapshot.data();
+        store.dispatch({
+          type: 'SET_MOVIES',
+          movies: movies
+            // Get all of the movies and store their indices with them
+            .map((movie, index) => ({
+              ...movie,
+              index
+            }))
+            // Sort the movies by their names
+            .sort((a, b) => a.movieName.localeCompare(b.movieName))
+        });
+      });
+
+      // Set user then go to home
+      store.dispatch({
+        type: 'SET_USER',
+        user
+      });
+    }
+  });
+}
+
+export { store, login, logout, setCurrentURL, addToLibrary, removeFromLibrary, setupFirebase };
