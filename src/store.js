@@ -30,7 +30,8 @@ const store = createStore((state=initialState, action) => {
     case 'SET_MOVIES':
       return {
         ...state,
-        movies: action.movies
+        movies: action.movies,
+        movieIds: new Set(action.movies.map(movie => movie.tmbdId))
       };
     case 'SET_CURRENT_URL':
       return {
@@ -80,7 +81,6 @@ function addToLibrary(movie) {
 }
 
 function removeFromLibrary(movie) {
-  console.log(movie);
   return moviesRef.update({
     movies: firebase.firestore.FieldValue.arrayRemove(movie)
   });

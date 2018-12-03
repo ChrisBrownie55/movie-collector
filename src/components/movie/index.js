@@ -1,9 +1,11 @@
 
 import { h, Component } from 'preact';
+import { connect } from 'preact-redux';
+import { addToLibrary, removeFromLibrary } from '../../store';
 import 'preact-material-components/Button/style.css';
 import style from './style.css';
 
-export default class Movie extends Component {
+class Movie extends Component {
   state = {
     validImage: true
   };
@@ -13,7 +15,7 @@ export default class Movie extends Component {
   };
 
   addToLibrary = () => {
-    this.props.addToLibrary({
+    addToLibrary({
       movieName: this.props.movieName,
       posterSrc: this.props.posterSrc,
       tmbdId: this.props.tmbdId
@@ -21,17 +23,18 @@ export default class Movie extends Component {
   }
 
   removeFromLibrary = () => {
-    this.props.removeFromLibrary({
+    removeFromLibrary({
       movieName: this.props.movieName,
       posterSrc: this.props.posterSrc,
       tmbdId: this.props.tmbdId
     });
   }
 
-  render({ movieName, posterSrc }, { validImage }) {
-    let actionButton = this.props.addToLibrary
-      ? <button onClick={this.addToLibrary} class={style.actionButton}>Add to library</button>
-      : <button onClick={this.removeFromLibrary} class={style.actionButton}>Remove from library</button>;
+  render({ movieName, posterSrc, tmbdId, movieIds }, { validImage }) {
+    let actionButton = movieIds.has(tmbdId)
+      ? <button onClick={this.removeFromLibrary}class={style.actionButton}>Remove from library</button>
+      : <button onClick={this.addToLibrary} class={style.actionButton}>Add to library</button>;
+
     return (
       <figure class={style.movie}>
         <div class={style.actions}>
@@ -50,3 +53,7 @@ export default class Movie extends Component {
     );
   }
 }
+
+export default connect(
+  ({ movieIds }) => ({ movieIds })
+)(Movie);

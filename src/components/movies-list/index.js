@@ -1,24 +1,11 @@
 import { h, Component } from 'preact';
 import CSSTransitionGroup from 'preact-css-transition-group';
 import { connect } from 'preact-redux';
-import { addToLibrary, removeFromLibrary } from '../../store';
 import Movie from '../movie';
 
 import style from './style.css';
 
 class MoviesList extends Component {
-  componentDidMount() {
-    if (this.props.currentURL === '/') {
-      this.movieListener = {
-        removeFromLibrary
-      };
-    } else {
-      this.movieListener = {
-        addToLibrary
-      };
-    }
-  }
-
   render() {
     return (
       <CSSTransitionGroup
@@ -30,7 +17,7 @@ class MoviesList extends Component {
       >
         {
           this.props.movies.map(movie => (
-            <Movie key={movie.tmbdId} {...movie} {...this.movieListener} />
+            <Movie key={movie.tmbdId} {...movie} />
           ))
         }
       </CSSTransitionGroup>
