@@ -64,3 +64,9 @@
 .searchPage > .pageIndicator > p {
   margin: 0 1rem;
 }
+
+.searchInput {}
+
+.searchInput > input {
+  box-shadow: 0 10px 40px; /* TODO: needs bg */
+}
