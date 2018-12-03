@@ -16,6 +16,12 @@
   background-color: white;
 }
 
+@media (max-width: 598px) {
+  .logoutButton:not(:disabled) {
+    margin-right: 0.5rem;
+  }
+}
+
 .title {
   display: flex;
   align-items: center;
