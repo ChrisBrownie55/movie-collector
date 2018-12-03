@@ -1,7 +1,10 @@
 .moviesList {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 9rem);
+  grid-gap: 1.25rem;
   justify-content: center;
-  flex-wrap: wrap;
 
-  max-width: calc(9rem * 5);
+  width: calc(calc(9rem + 2.5rem) * 5);
+  max-width: calc(100% - 2rem);
+  margin: 0 auto;
 }

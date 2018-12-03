@@ -5,7 +5,7 @@
   flex-direction: column;
 
   width: var(--size);
-  margin: 1.25rem;
+  margin: 0;
 }
 
 .movie > .moviePoster {
