@@ -65,8 +65,39 @@
   margin: 0 1rem;
 }
 
-.searchInput {}
+.searchInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 170px;
+  height: 30px;
+  margin-top: 3rem;
+
+  background-color: hsl(263, 100%, 97%);
+
+  border-radius: 4px;
+}
+
+.searchInput > label {
+  display: none;
+}
 
 .searchInput > input {
-  box-shadow: 0 10px 40px; /* TODO: needs bg */
+  width: 100%;
+  height: 100%;
+
+  background: none;
+
+  text-align: center;
+
+  border: none;
+}
+
+.searchInput > input::placeholder {
+  color: hsl(265, 66%, 79%);
+}
+
+.searchInput > input:focus {
+  outline: none;
 }
