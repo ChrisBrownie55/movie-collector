@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import { connect } from 'preact-redux';
 import debounce from 'lodash/debounce';
-import CSSTransitionGroup from 'preact-css-transition-group';
+import Animate from 'preact-animate';
 
 import MoviesList from '../../components/movies-list';
 import Illustration from '../../components/illustration';
@@ -104,11 +104,7 @@ class Search extends Component {
           <Icon class={style.search}>search</Icon>
         </header>
         <SearchInput onInput={this.handleInput} label="Search movies" id="search-input" name="search" type="text" placeholder="Fantastic Beasts" />
-        <CSSTransitionGroup
-          transitionName="fade"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}
-        >
+        <Animate transitionName="fade" exclusive>
           {!inputFilled
             ? (
               <Illustration key={0} src={svg} alt="Illustration of a lady on a bench">
@@ -117,7 +113,7 @@ class Search extends Component {
             )
             : <MoviesList key={1} movies={results} />
           }
-        </CSSTransitionGroup>
+        </Animate>
         {pageIndicator}
       </div>
     );
