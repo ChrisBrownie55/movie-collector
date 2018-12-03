@@ -72,13 +72,15 @@ class Search extends Component {
     this.getMovieApiData(this.state.query, pageNumber);
   }
 
-  previousPage = () => {
+  previousPage = async () => {
     if (this.state.page === 1) return;
-    this.loadPage(this.state.page - 1);
+    await this.loadPage(this.state.page - 1);
+    document.body.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
-  nextPage = () => {
+  nextPage = async () => {
     if (this.state.page === this.state.totalPages) return;
-    this.loadPage(this.state.page + 1);
+    await this.loadPage(this.state.page + 1);
+    document.body.scrollIntoView({ behavior: 'smooth', block: 'start' })
   };
 
   render({ user: { photoURL } }, { page, totalPages, results, inputFilled }) {
