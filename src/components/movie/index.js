@@ -19,7 +19,9 @@ export default class Movie extends Component {
       : <Button onClick={removeFromLibrary} class={style.remove}>Remove from library</Button>;
     return (
       <figure class={style.movie}>
-        {actionButton}
+        <div class={style.actions}>
+          {actionButton}
+        </div>
         {validImage
           ? <img class={style.moviePoster} onError={this.handleError} src={`https://image.tmdb.org/t/p/w185${posterSrc}`} alt="movie poster" />
           : (
