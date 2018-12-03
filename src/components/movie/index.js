@@ -15,8 +15,8 @@ export default class Movie extends Component {
 
   render({ movieName, posterSrc, addToLibrary, removeFromLibrary, tmbdId }, { validImage }) {
     let actionButton = addToLibrary
-      ? <Button onClick={addToLibrary} class={style.add}>Add to library</Button>
-      : <Button onClick={removeFromLibrary} class={style.remove}>Remove from library</Button>;
+      ? <button outlined onClick={addToLibrary} class={style.actionButton}>Add to library</button>
+      : <button outlined onClick={removeFromLibrary} class={style.actionButton}>Remove from library</button>;
     return (
       <figure class={style.movie}>
         <div class={style.actions}>
