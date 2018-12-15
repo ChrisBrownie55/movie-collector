@@ -16,7 +16,7 @@ export default class Login extends Component {
         <div class={style.Login}>
           <Typography headline5>Welcome to Movie Collector</Typography>
           <Typography body1>If you haven't registered yet, don't worry, logging in with Google will create you an account.</Typography>
-          <Button class={style.googleSignIn} onClick={login}>
+          <Button class={`${style.signIn} ${style.googleButton}`} onClick={login}>
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" />
             <span>Sign in with Google</span>
           </Button>
