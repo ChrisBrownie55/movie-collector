@@ -44,7 +44,7 @@ const store = createStore((state=initialState, action) => {
   return state;
 });
 
-async function login(user) {
+async function login() {
   try {
     const { user } = await auth.signInWithPopup(provider);
     store.dispatch({
@@ -54,6 +54,15 @@ async function login(user) {
   } catch (error) {
     // TODO: Notify the user of error
     console.error('An error has occurred while authenticating:', error);
+  }
+}
+
+async function loginAnonymously() {
+  try {
+    await auth.signInAnonymously();
+  } catch (error) {
+    // TODO: Notify the user of error
+    console.error('An error has occurred while creating an anonymous account:', error);
   }
 }
 
