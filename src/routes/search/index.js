@@ -7,6 +7,7 @@ import Animate from 'preact-animate';
 import MoviesList from '../../components/movies-list';
 import Illustration from '../../components/illustration';
 import SearchInput from '../../components/search-input';
+import Avatar from '../../components/avatar';
 
 import Icon from 'preact-material-components/Icon';
 import IconButton from 'preact-material-components/IconButton';
@@ -102,7 +103,7 @@ class Search extends Component {
     return (
       <div class={`${style.searchPage} page`}>
         <header class={style.header}>
-          <img onClick={this.goToMovies} class={style.avatar} src={photoURL} alt="avatar" />
+          <Avatar onClick={this.goToMovies} class={style.avatar} src={photoURL} />
           <Icon class={style.search}>search</Icon>
         </header>
         <SearchInput onInput={this.handleInput} label="Search movies" id="search-input" name="search" type="text" placeholder="Fantastic Beasts" />
