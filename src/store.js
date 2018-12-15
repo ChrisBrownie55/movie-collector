@@ -5,11 +5,15 @@ import firebase, { auth, provider, firestore } from './firebase';
 const initialState = {
   currentURL: '',
   user: null,
+  isAnonymous: false,
   movies: []
 };
 
 let moviesRef;
 
+/************
+ * Reducers *
+ ************/
 const store = createStore((state=initialState, action) => {
   switch (action.type) {
     case '@@redux/INIT':
@@ -38,12 +42,20 @@ const store = createStore((state=initialState, action) => {
         ...state,
         currentURL: action.currentURL
       };
+    case 'SET_ANONYMITY':
+      return {
+        ...state,
+        isAnonymous: action.isAnonymous
+      };
     default:
       break;
   }
   return state;
 });
 
+/***********
+ * Actions *
+ ***********/
 async function login() {
   try {
     const { user } = await auth.signInWithPopup(provider);
@@ -60,6 +72,10 @@ async function login() {
 async function loginAnonymously() {
   try {
     await auth.signInAnonymously();
+    store.dispatch({
+      type: 'SET_ANONYMITY',
+      isAnonymous: true
+    });
   } catch (error) {
     // TODO: Notify the user of error
     console.error('An error has occurred while creating an anonymous account:', error);
@@ -73,6 +89,11 @@ async function logout() {
   store.dispatch({
     type: 'SET_USER',
     user: null
+  });
+
+  store.dispatch({
+    type: 'SET_ANONYMITY',
+    isAnonymous: false
   });
 }
 
