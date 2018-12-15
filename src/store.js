@@ -141,6 +141,11 @@ function setupFirebase() {
         });
       });
 
+      store.dispatch({
+        type: 'SET_ANONYMITY',
+        isAnonymous: user.isAnonymous
+      });
+
       // Set user then go to home
       store.dispatch({
         type: 'SET_USER',

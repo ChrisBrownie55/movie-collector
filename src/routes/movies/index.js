@@ -4,6 +4,7 @@ import { connect } from 'preact-redux';
 
 import MoviesList from '../../components/movies-list';
 import Illustration from '../../components/illustration';
+import Avatar from '../../components/avatar';
 
 import Icon from 'preact-material-components/Icon';
 
@@ -18,14 +19,10 @@ class Movies extends Component {
       ? 'Your'
       : `${displayName.split(' ')[0]}'s`;
 
-    const avatar = isAnonymous
-      ? '../../assets/avatar-placeholder.svg'
-      : photoURL;
-
     return (
       <div class={`${style.movies} page`}>
         <header class={style.header}>
-          <img class={style.avatar} src={avatar} alt="avatar" />
+          <Avatar class={style.avatar} src={photoURL} />
           <Icon class={style.search} onClick={this.goToSearch}>search</Icon>
         </header>
         <h1 class={style.displayName}>{name} Movies</h1>
