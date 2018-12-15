@@ -33,7 +33,8 @@
       "brace-style": [
         "error",
         "1tbs"
-      ]
+      ],
+      "react/no-did-update-set-state": "warn"
     }
   },
   "eslintIgnore": [

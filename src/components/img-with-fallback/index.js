@@ -17,7 +17,7 @@ class ImgWithFallback extends Component {
     const currentSrc = usingFallback
       ? fallback
       : src;
-    
+
     return <img src={currentSrc} onError={!usingFallback && this.handleError} {...props} />
   }
 }
