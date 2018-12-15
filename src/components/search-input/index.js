@@ -19,8 +19,8 @@ class SearchInput extends Component {
   render({ label, onInput, ...props }, { value }) {
     return (
       <div class={`${style.searchInput} ${value ? style.inputFilled : ''}`}>
-        <label for="search-input">{label}</label>
         <input value={this.state.value} onInput={this.handleInput} {...props} />
+        <label for="search-input">{label}</label>
       </div>
     );
   }

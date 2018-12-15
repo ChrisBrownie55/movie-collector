@@ -31,7 +31,7 @@
   cursor: text;
 }
 
-.searchInput:focus-within > label,
+.searchInput > input:focus + label,
 .searchInput.inputFilled > label {
   transform: translateY(-25px) scale(0.65);
 }
