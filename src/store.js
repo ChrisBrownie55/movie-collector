@@ -82,18 +82,36 @@ async function loginAnonymously() {
   }
 }
 
+async function deleteUser() {
+  const { user } = store.getState();
+
+  if (!user) {
+    return;
+  }
+
+  try {
+    await user.delete();
+  } catch (error) {
+    console.log('Unable to remove user');
+  }
+}
+
 async function logout() {
   await auth.signOut();
   route('/login');
 
+  if (store.getState().isAnonymous) {
+    deleteUser();
+
+    store.dispatch({
+      type: 'SET_ANONYMITY',
+      isAnonymous: false
+    });
+  }
+
   store.dispatch({
     type: 'SET_USER',
     user: null
-  });
-
-  store.dispatch({
-    type: 'SET_ANONYMITY',
-    isAnonymous: false
   });
 }
 
