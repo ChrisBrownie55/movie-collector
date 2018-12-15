@@ -129,4 +129,4 @@ function setupFirebase() {
   });
 }
 
-export { store, login, logout, setCurrentURL, addToLibrary, removeFromLibrary, setupFirebase };
+export { store, login, loginAnonymously, logout, setCurrentURL, addToLibrary, removeFromLibrary, setupFirebase };
