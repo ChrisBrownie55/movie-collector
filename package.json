@@ -7,7 +7,7 @@
     "start": "cross-per-env",
     "start:production": "yarn run -s serve",
     "start:development": "yarn run -s dev",
-    "build": "preact build --template ./src/template.html --no-prerender",
+    "build": "preact build --template ./src/template.html",
     "serve": "preact build --template ./src/template.html --no-prerender && preact serve",
     "dev": "preact watch --template ./src/template.html",
     "lint": "eslint src"
