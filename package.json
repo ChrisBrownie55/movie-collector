@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "firebase": "^5.5.9",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "preact": "^8.2.1",
     "preact-animate": "^3.0.5",
     "preact-compat": "^3.17.0",
